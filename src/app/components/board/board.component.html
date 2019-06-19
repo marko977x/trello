@@ -1,0 +1,14 @@
+<div class="board-container" *ngIf="board$ | async as board">
+  <div
+    cdkDropList [cdkDropListData]="board.lists"
+    (cdkDropListDropped)="drop($event)"
+    [cdkDropListConnectedTo]="board.lists"
+    class="board-lists" style="display: flex" 
+    cdkDropListOrientation="horizontal">
+      <app-list
+        cdkDrag *ngFor="let list of board.lists" 
+        class="board-list" [listId]="list"
+        [connectedListsIds]="board.lists">
+      </app-list>
+  </div>
+</div>

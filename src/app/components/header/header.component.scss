@@ -1,0 +1,53 @@
+$header-button-dimension: 36px;
+$header-height: 44px;
+$header-button-background-color: rgba(0, 0, 0, 0.1);
+
+.mat-toolbar {
+  position: fixed;
+  height: $header-height;
+  padding: 4px;
+  top: 0px;
+  width: 100%;
+  background-color: transparent;
+}
+.mat-toolbar-multiple-rows {
+  min-height: 40px;
+}
+.mat-toolbar-row {
+  padding: 0px;
+  height: $header-height;
+  display: flex;
+  justify-content: space-between;
+}
+
+.home-icon-button {
+  background-color: $header-button-background-color;
+  padding: 0px;
+  min-width: $header-button-dimension;
+  min-height: $header-button-dimension;
+}
+
+.account-icon-button {
+  padding: 0px;
+  min-width: $header-button-dimension;
+  min-width: $header-button-dimension;
+  background-color: $header-button-background-color;
+}
+
+.board-name {
+  height: $header-button-dimension;
+}
+
+.board-text-input {
+  width: min-content;
+}
+
+.inner-header {
+  background-color: rgba(0, 0, 0, 0.2);
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  border-radius: 4px;
+  margin-left: 4px;
+  margin-right: 4px;
+}

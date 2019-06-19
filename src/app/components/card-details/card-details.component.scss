@@ -1,0 +1,27 @@
+.card {
+  background-color: white;
+  padding: 6px 8px 6px 8px;
+  margin: 0px 8px 8px 8px;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.card-title {
+  font-size: 14px;
+  padding-bottom: 4px;
+}
+
+.card-badges {
+  display: flex;
+  padding: 4px 4px 4px 0px;
+  justify-content: flex-start;
+}
+
+.card-check-box-icon {
+  transform: scale(0.5);
+}
+
+.check-box-label {
+  align-self: center;
+  font-size: 14px;
+}
