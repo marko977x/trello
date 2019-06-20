@@ -41,4 +41,5 @@ import { ChecklistItemComponent } from './components/checklist-item/checklist-it
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+}

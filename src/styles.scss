@@ -1,4 +1,13 @@
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
+// @import '~bootstrap/dist/css/bootstrap.min.css';
+// @import './app/components/card-details/card-details.component.scss';
+
+@mixin cardWindow {
+  .mat-dialog-container {
+    background-color: #f4f5f7;
+  }
+}
+@include cardWindow();
 
 html, body {
   height: 100vh;

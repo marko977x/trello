@@ -1,7 +1,22 @@
-<div class="checklist-item">
-  <div class="check-icon"><mat-icon svgIcon="uncheck-icon"></mat-icon></div>
-  <div class="item-text">
-    <p>checklist item</p>
-    <button mat-icon-button class="delete-item-icon"><mat-icon svgIcon="close-icon"></mat-icon></button>
+<div class="checklist-item ">
+  <div class="check-icon">
+    <mat-icon svgIcon='{{checkItemIcon}}' (click)="toggleCheckbox()"></mat-icon>
+  </div>
+  <div class="checklist-content">
+    <div class="item-text" *ngIf="!isEditableFormVisible">
+      <p (click)="showEditableForm()">checklist item</p>
+      <button mat-mini-fab class="delete-item-button">
+        <mat-icon class="delete-item-icon" svgIcon="close-icon"></mat-icon>
+      </button> 
+    </div>
+    <div class="editable-item-form" *ngIf="isEditableFormVisible">
+      <mat-form-field class="input-wrapper">
+        <input matInput/>
+      </mat-form-field>
+      <button mat-raised-button color="primary">Save</button>
+        <span><button class="close-button" mat-mini-fab (click)="hideEditableForm()">
+          <mat-icon class="close-icon" svgIcon="{{closeIcon}}"></mat-icon>
+        </button></span>
+    </div>
   </div>
 </div>
