@@ -1,0 +1,29 @@
+.checklist-item {
+  margin-top: 10px;
+  display: flex;
+}
+
+.checklist-item:hover {
+  background-color: #dfe1e6;
+}
+
+.check-icon {
+  transform: scale(0.75);
+  width: 40px;
+  padding: 0px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.item-text {
+  width: 100%;
+  padding: 0px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.delete-item-icon {
+  transform: scale(0.75);
+}

@@ -8,6 +8,7 @@ import { ListState } from 'src/app/root-store/list-store/state';
 import { selectListState, selectListById } from 'src/app/root-store/list-store/selectors';
 import { List } from 'src/app/models/list';
 import { LoadLists } from 'src/app/root-store/list-store/actions';
+import { IconRegistryService } from 'src/app/services/icon-registry.service';
 
 @Component({
   selector: 'app-list',
@@ -23,10 +24,13 @@ export class ListComponent implements OnInit {
   connectedListsIds: string[];
 
   constructor(
-    iconRegistry: MatIconRegistry,
-    sanitizer: DomSanitizer,
-    private store$: Store<ListState>) {
-      iconRegistry.addSvgIcon('plus-icon', sanitizer.bypassSecurityTrustResourceUrl('../../assets/plus-icon.svg'));
+    private store$: Store<ListState>, 
+    private iconRegistry: IconRegistryService) {
+      this.registerIcons();
+  }
+
+  registerIcons() {
+    this.iconRegistry.registerIcon('plus-icon');
   }
 
   ngOnInit() {

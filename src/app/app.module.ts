@@ -12,6 +12,10 @@ import { ListComponent } from './components/list/list.component';
 import { CardDetailsComponent } from './components/card-details/card-details.component';
 import { BoardComponent } from './components/board/board.component';
 import { RootStoreModule } from './root-store/root-store.module';
+import { CardDetailsWindowComponent } from './components/card-details-window/card-details-window.component';
+import { CardDescriptionComponent } from './components/card-description/card-description.component';
+import { ChecklistComponent } from './components/checklist/checklist.component';
+import { ChecklistItemComponent } from './components/checklist-item/checklist-item.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +23,11 @@ import { RootStoreModule } from './root-store/root-store.module';
     HeaderComponent,
     ListComponent,
     CardDetailsComponent,
-    BoardComponent
+    BoardComponent,
+    CardDetailsWindowComponent,
+    CardDescriptionComponent,
+    ChecklistComponent,
+    ChecklistItemComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +37,7 @@ import { RootStoreModule } from './root-store/root-store.module';
     HttpClientModule,
     RootStoreModule
   ],
+  entryComponents: [CardDetailsWindowComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

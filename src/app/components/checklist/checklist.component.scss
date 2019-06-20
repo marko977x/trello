@@ -1,0 +1,49 @@
+.checklist-header {
+  display: flex;
+}
+
+.header-content {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.checklist-icon {
+  transform: scale(0.75);
+  padding: 0px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 40px;
+}
+
+.header-title {
+  font-weight: bold;
+  font-size: 16px;
+  vertical-align: middle;
+  padding: 0px 10px;
+  margin: 12px 0px;
+}
+
+.delete-button {
+  height: 36px;
+}
+
+.checklist-progress-bar {
+  display: flex;
+}
+
+.progress-percentage {
+  width: 40px;
+  padding: 0px 10px;
+  text-align: center;
+  font-size: 12px;
+}
+
+.progress-bar {
+  width: 100%;
+  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

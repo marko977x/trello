@@ -1,0 +1,32 @@
+.card-window {
+  width: 768px;
+  position: relative;
+}
+
+.window-header {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.window-content {
+  margin-top: 40px;
+}
+
+.card-icon {
+  display: flex;
+  padding: 0px 10px;
+  width: 40px;
+}
+
+.close-icon {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  transform: scale(0.75);
+}
+
+.card-title {
+  padding: 0px 10px;
+  font-size: 20px;
+  font-weight: bold;
+}

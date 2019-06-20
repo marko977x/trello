@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { MatIconRegistry } from '@angular/material';
+import { MatIconRegistry, MatDialog } from '@angular/material';
+import { CardDetailsWindowComponent } from '../card-details-window/card-details-window.component';
+import { IconRegistryService } from 'src/app/services/icon-registry.service';
 
 @Component({
   selector: 'app-card-details',
@@ -11,11 +13,19 @@ export class CardDetailsComponent implements OnInit {
   @Input()
   title: string = "Title";
 
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
-    iconRegistry.addSvgIcon('check-box-icon', sanitizer.bypassSecurityTrustResourceUrl('../../assets/check-box-icon.svg'));
+  constructor(public dialog: MatDialog, private iconRegistry: IconRegistryService) {
+    this.registerIcons();
+  }
+
+  registerIcons() {
+    this.iconRegistry.registerIcon('check-box-icon');
   }
 
   ngOnInit() {
+  }
+
+  openCardDetailsWindow() {
+    this.dialog.open(CardDetailsWindowComponent);
   }
 
 }

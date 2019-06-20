@@ -1,0 +1,41 @@
+.card-description {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.description-header {
+  display: flex;
+}
+
+.description-icon {
+  transform: scale(0.75);
+  padding: 0px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 40px;
+}
+
+.description-label {
+  font-weight: bold;
+  font-size: 16px;
+  vertical-align: middle;
+  padding: 0px 10px;
+  margin: 12px 0px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.description-content {
+  padding: 0px 10px;
+  width: 100%;
+}
+
+.mat-form-field {
+  width: 100%;
+}
