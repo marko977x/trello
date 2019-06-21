@@ -1,9 +1,10 @@
 import { initialState, ChecklistState, ChecklistAdapter } from "./state";
 import { Action } from '@ngrx/store';
-import { ChecklistActionTypes, LoadChecklistsSuccess, LoadChecklistsError, DeleteChecklist } from './actions';
+import { ChecklistActionTypes, LoadChecklistsSuccess, LoadChecklistsError, DeleteChecklist, SwapItems } from './actions';
 import { ChecklistItemActionTypes, DeleteChecklistItem } from '../checklist-item-store/actions';
 import { Update } from '@ngrx/entity';
 import { Checklist } from 'src/app/models/checklist';
+import { moveItemInArray } from '@angular/cdk/drag-drop';
 
 function reducer(state = initialState, action: Action): ChecklistState {
   switch(action.type) {
@@ -33,6 +34,20 @@ function reducer(state = initialState, action: Action): ChecklistState {
     }
     case ChecklistActionTypes.DELETE_CHECKLIST: {
       return ChecklistAdapter.removeOne((action as DeleteChecklist).checklistId, state);
+    }
+    case ChecklistActionTypes.SWAP_ITEMS: {
+      const {checklistId, previousIndex, currentIndex} = (action as SwapItems);
+      let checklist: Checklist = state.entities[checklistId];
+      moveItemInArray(checklist.items, previousIndex, currentIndex);
+      return {
+        ...state, entities: {
+          ...state.entities,
+          [checklistId]: {
+            ...state.entities[checklistId],
+            items: checklist.items
+          }
+        }
+      }
     }
     default: return state;
   }

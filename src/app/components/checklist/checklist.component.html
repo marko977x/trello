@@ -10,8 +10,14 @@
     <div class="progress-percentage">{{calculateProgressPercentage()}}%</div>
     <div class="progress-bar"><mat-progress-bar mode="determinate" value="{{calculateProgressPercentage()}}"></mat-progress-bar></div>
   </div>
-  <div class="checklist-items">
-    <app-checklist-item *ngFor="let item of items" [item]="item"></app-checklist-item>
+  <div 
+    class="checklist-items"
+    cdkDropList
+    [cdkDropListData]="items"
+    (cdkDropListDropped)="drop($event)">
+      <app-checklist-item
+        *ngFor="let item of items" [item]="item" cdkDrag class="checklist-item">
+      </app-checklist-item>
     <button class="add-item-button" mat-flat-button>Add an item</button>
   </div>
 </div>

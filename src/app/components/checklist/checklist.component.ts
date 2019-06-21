@@ -7,7 +7,8 @@ import { Checklist } from 'src/app/models/checklist';
 import { selectChecklistById } from 'src/app/root-store/checklist-store/selectors';
 import { ChecklistItem } from 'src/app/models/checklist-item';
 import { selectChecklistItems } from 'src/app/root-store/checklist-item-store/selectors';
-import { DeleteChecklist } from 'src/app/root-store/checklist-store/actions';
+import { DeleteChecklist, SwapItems } from 'src/app/root-store/checklist-store/actions';
+import { moveItemInArray, CdkDragDrop } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-checklist',
@@ -47,6 +48,10 @@ export class ChecklistComponent implements OnInit {
 
   deleteChecklist() {
     this.store$.dispatch(new DeleteChecklist(this.cardId, this.checklistId));
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    this.store$.dispatch(new SwapItems(this.checklistId, event.previousIndex, event.currentIndex));
   }
 
 }
