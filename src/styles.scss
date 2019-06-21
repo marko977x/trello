@@ -5,6 +5,12 @@
     background-color: #f4f5f7;
     padding: 15px 10px 15px 10px !important;
   }
+  .mat-tab-label {
+    width: 100%;
+  }
+  .mat-tab-body-wrapper {
+    flex: 1;
+  }
 }
 @include cardWindow();
 

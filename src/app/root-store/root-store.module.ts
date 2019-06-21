@@ -8,6 +8,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { ChecklistStoreModule } from './checklist-store/checklist-store.module';
 import { UserStoreModule } from './user-store/user-store.module';
 import { ChecklistItemStoreModule } from './checklist-item-store/checklist-item-store.module';
+import { UiStoreModule } from './ui-store/ui-store.module';
 
 @NgModule({
   declarations: [],
@@ -20,7 +21,8 @@ import { ChecklistItemStoreModule } from './checklist-item-store/checklist-item-
     UserStoreModule,
     ChecklistItemStoreModule,
     StoreModule.forRoot({}),
-    EffectsModule.forRoot([])
+    EffectsModule.forRoot([]),
+    UiStoreModule
   ]
 })
 export class RootStoreModule { }

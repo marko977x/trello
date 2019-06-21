@@ -6,7 +6,7 @@ import { selectAllChecklistEntities } from '../checklist-store/selectors';
 import { Dictionary } from '@ngrx/entity';
 import { Checklist } from 'src/app/models/checklist';
 import { Card } from 'src/app/models/card';
-import { isEmpty } from 'src/app/services/objectChecker';
+import { isEmpty } from 'src/app/services/object-checker';
 
 export const selectChecklistItemState: MemoizedSelector<object, ChecklistItemState> = 
   createFeatureSelector('checklistItem');

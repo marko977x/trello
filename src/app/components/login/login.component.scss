@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.container h1 {
+  text-align: center;
+  color: rgb(5, 0, 82);
+}
+
+.field {
+  margin: 0px 10px 10px 10px;
+}
+
+button {
+  margin: 0px 10px 10px 10px;
+  width: 50%;
+}
+
+.mat-form-field {
+  border-color: white;
+}
