@@ -1,14 +1,13 @@
 <mat-toolbar class="mat-toolbar">
   <mat-toolbar-row class="mat-toolbar-row">
     <div class="board-icon">
-      <button class="home-icon-button" mat-flat-button>
+      <button class="home-icon-button" mat-flat-button routerLink="{{dashboardUrl}}">
         <mat-icon class="home-icon" svgIcon="home-icon" aria-hidden="false"></mat-icon>
       </button>
     </div>
     <div class="inner-header">
       <div class=board-name>
-        <label>Board Name</label>
-        <!-- <input class="board-text-input" matInput value="text" /> -->
+        <label>{{getHeaderTitle()}}</label>
       </div>
     </div>
     <div class="account-icon">

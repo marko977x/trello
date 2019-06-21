@@ -1,6 +1,6 @@
 $header-button-dimension: 36px;
 $header-height: 44px;
-$header-button-background-color: rgba(0, 0, 0, 0.1);
+$header-button-background-color: hsla(0,0%,100%,.3);
 
 .mat-toolbar {
   position: fixed;
@@ -38,16 +38,24 @@ $header-button-background-color: rgba(0, 0, 0, 0.1);
   height: $header-button-dimension;
 }
 
+.board-name label {
+  color: white;
+}
+
 .board-text-input {
   width: min-content;
 }
 
 .inner-header {
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: $header-button-background-color;
   flex: 1;
   display: flex;
   justify-content: center;
   border-radius: 4px;
   margin-left: 4px;
   margin-right: 4px;
+}
+
+.mat-icon {
+  color: white;
 }

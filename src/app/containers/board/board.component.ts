@@ -5,6 +5,8 @@ import { Store } from '@ngrx/store';
 import { Board } from 'src/app/models/board';
 import { selectBoardById } from 'src/app/root-store/board-store/selectors';
 import { RootState } from 'src/app/root-store/root-state';
+import { selectSelectedBoard } from 'src/app/root-store/ui-store/selectors';
+import { IMAGES_PATHS } from 'src/app/models/app';
 
 @Component({
   selector: 'app-board',
@@ -19,11 +21,15 @@ export class BoardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.board$ = this.store$.select(selectBoardById("board1"));
+    this.board$ = this.store$.select(selectSelectedBoard());
   }
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+  }
+
+  getBackgroundImage(index: number) {
+    return IMAGES_PATHS[index];
   }
 
 }

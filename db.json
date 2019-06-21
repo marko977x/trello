@@ -4,7 +4,8 @@
       "id": "board1",
       "title": "Board Title",
       "lists": ["1", "2"],
-      "userId": "User Id"
+      "userId": "User Id",
+      "backgroundIndex": 0
     }
   ],
   "lists": [
@@ -109,6 +110,15 @@
       "text": "Item six text",
       "isChecked": false,
       "checklist": "checklist4"
+    }
+  ],
+  "users": [
+    {
+      "id": "user1",
+      "email": "marko977x@gmail.com",
+      "password": "marko977x",
+      "username": "marko977x",
+      "boards": ["board1"]
     }
   ]
 }

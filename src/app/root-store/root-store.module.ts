@@ -20,9 +20,9 @@ import { UiStoreModule } from './ui-store/ui-store.module';
     ChecklistStoreModule,
     UserStoreModule,
     ChecklistItemStoreModule,
+    UiStoreModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
-    UiStoreModule
   ]
 })
 export class RootStoreModule { }

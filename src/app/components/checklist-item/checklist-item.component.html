@@ -6,7 +6,7 @@
     <div class="item-text" *ngIf="!isEditableFormVisible">
       <p (click)="showEditableForm()">{{item.text}}</p>
       <button mat-mini-fab class="delete-item-button" (click)="deleteItem()">
-        <mat-icon class="delete-item-icon" (click)="resetItemText()" svgIcon="close-icon"></mat-icon>
+        <mat-icon class="delete-item-icon" (click)="resetItemText()" svgIcon="{{closeIcon}}"></mat-icon>
       </button> 
     </div>
     <div class="editable-item-form" *ngIf="isEditableFormVisible">

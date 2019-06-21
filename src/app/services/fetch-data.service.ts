@@ -26,3 +26,4 @@ export const API_BOARDS_URL = API_BASE_URL + "boards";
 export const API_CARDS_URL = API_BASE_URL + "cards";
 export const API_CHECKLISTS_URL = API_BASE_URL + "checklists";
 export const API_CHECKLIST_ITEMS_URL = API_BASE_URL + "checklistItems";
+export const API_USERS_URL = API_BASE_URL + "users";

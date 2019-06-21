@@ -1,4 +1,7 @@
+import { Board } from './board';
+
 export interface Ui {
   loggedUser: string,
-  userBoards: string[]
+  isDashboardPage: boolean,
+  board: Board
 }

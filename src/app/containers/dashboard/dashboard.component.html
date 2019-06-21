@@ -1,0 +1,19 @@
+<div class="header-container">
+  <app-header></app-header>
+</div>
+
+<div class="dashboard" *ngIf="boards$ | async as boards">
+  <div class="boards-section">
+    <mat-card 
+      class="board-card" 
+      *ngFor="let board of boards" 
+      (click)="openBoard(board)"
+      routerLink="/board">
+      <img src="{{getBoardImage(board.backgroundIndex)}}" height="100%" width="100%"/>
+      <p class="board-name">{{board.title}}</p>
+    </mat-card>
+    <mat-card class="board-card">
+      <p>Create new board...</p>
+    </mat-card>
+  </div>
+</div>

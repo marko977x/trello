@@ -5,6 +5,7 @@ import { Card } from 'src/app/models/card';
 import { RootState } from 'src/app/root-store/root-state';
 import { Store } from '@ngrx/store';
 import { selectCardById } from 'src/app/root-store/card-store/selectors';
+import { MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-card-details-window',
@@ -16,7 +17,8 @@ export class CardDetailsWindowComponent implements OnInit {
 
   constructor(
     private iconRegistry: IconRegistryService,
-    private store$: Store<RootState>) {
+    private store$: Store<RootState>,
+    private dialogRef: MatDialogRef<CardDetailsWindowComponent>) {
       this.registerIcons();
   }
 
@@ -26,6 +28,10 @@ export class CardDetailsWindowComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  closeDialog() {
+    this.dialogRef.close();
   }
 
 }
