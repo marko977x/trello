@@ -1,6 +1,6 @@
 import { initialState, ChecklistItemState, ChecklistItemAdapter } from './state';
 import { Action } from '@ngrx/store';
-import { ChecklistItemActionTypes, LoadChecklistItemsSuccess, LoadChecklistItemsError, ToggleChecklistItem, DeleteChecklistItem } from './actions';
+import { ChecklistItemActionTypes, LoadChecklistItemsSuccess, LoadChecklistItemsError, ToggleChecklistItem, DeleteChecklistItem, SaveChecklistItemText } from './actions';
 import { Update } from '@ngrx/entity';
 import { ChecklistItem } from 'src/app/models/checklist-item';
 import { ChecklistActionTypes, DeleteChecklist } from '../checklist-store/actions';
@@ -40,6 +40,14 @@ function reducer(state = initialState, action: Action): ChecklistItemState {
           keys.push(key);
       }
       return ChecklistItemAdapter.removeMany(keys, state);
+    }
+    case ChecklistItemActionTypes.SAVE_CHECKLIST_ITEM_TEXT: {
+      const {itemId, text} = (action as SaveChecklistItemText);
+      const update: Update<ChecklistItem> = {
+        id: itemId,
+        changes: {text}
+      }
+      return ChecklistItemAdapter.updateOne(update, state);
     }
     default: return state;
   }

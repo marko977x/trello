@@ -6,7 +6,8 @@ export enum ChecklistItemActionTypes {
   LOAD_CHECKLIST_ITEMS_SUCCESS = '[CHECKLIST_ITEM] Load Checklist Items Success',
   LOAD_CHECKLIST_ITEMS_ERROR = '[CHECKLIST_ITEM] Load Checklist Items Error',
   TOGGLE_CHECKLIST_ITEM = '[CHECKLIST_ITEM] Toggle Checklist Item',
-  DELETE_CHECKLIST_ITEM = '[CHECKLIST_ITEM] Delete Checklist Item'
+  DELETE_CHECKLIST_ITEM = '[CHECKLIST_ITEM] Delete Checklist Item',
+  SAVE_CHECKLIST_ITEM_TEXT = '[CHECKLIST_ITEM] Save Checklist Item Text'
 }
 
 export class LoadChecklistItems implements Action {
@@ -31,4 +32,9 @@ export class ToggleChecklistItem implements Action {
 export class DeleteChecklistItem implements Action {
   readonly type = ChecklistItemActionTypes.DELETE_CHECKLIST_ITEM;
   constructor(public checklistId: string, public itemId: string) {}
+}
+
+export class SaveChecklistItemText implements Action {
+  readonly type = ChecklistItemActionTypes.SAVE_CHECKLIST_ITEM_TEXT;
+  constructor(public itemId: string, public text: string) {}
 }

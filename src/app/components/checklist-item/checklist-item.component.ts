@@ -3,7 +3,7 @@ import { IconRegistryService } from 'src/app/services/icon-registry.service';
 import { ChecklistItem } from 'src/app/models/checklist-item';
 import { Store } from '@ngrx/store';
 import { RootState } from 'src/app/root-store/root-state';
-import { ToggleChecklistItem, DeleteChecklistItem } from 'src/app/root-store/checklist-item-store/actions';
+import { ToggleChecklistItem, DeleteChecklistItem, SaveChecklistItemText } from 'src/app/root-store/checklist-item-store/actions';
 
 const UNCHECKED_ITEM_ICON: string = 'uncheck-icon';
 const CHECKED_ITEM_ICON: string = 'checked-icon';
@@ -18,6 +18,7 @@ export class ChecklistItemComponent implements OnInit {
   checkItemIcon: string;
   closeIcon: string;
   isEditableFormVisible: boolean;
+  itemText: string;
 
   @Input()
   item: ChecklistItem;
@@ -57,4 +58,16 @@ export class ChecklistItemComponent implements OnInit {
     this.isEditableFormVisible = true;
   }
 
+  resetItemText() {
+    this.itemText = this.item.text;
+  }
+
+  onItemTextChange(event) {
+    this.itemText = event.target.value;
+  }
+
+  saveItemText() {
+    this.store$.dispatch(new SaveChecklistItemText(this.item.id, this.itemText));
+    this.hideEditableForm();
+  }
 }

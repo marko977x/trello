@@ -1,6 +1,6 @@
 import { initialState, CardState, CardAdapter } from "./state";
 import { Action } from '@ngrx/store';
-import { CardActionTypes, LoadCardsSuccess, LoadCardsError, SaveDescription } from './actions';
+import { CardActionTypes, LoadCardsSuccess, LoadCardsError, SaveDescription, DeleteCard } from './actions';
 import { ChecklistActionTypes, DeleteChecklist } from '../checklist-store/actions';
 import { Update } from '@ngrx/entity';
 import { Card } from 'src/app/models/card';
@@ -39,6 +39,9 @@ function reducer(state = initialState, action: Action): CardState {
         changes: {description}
       }
       return CardAdapter.updateOne(update, state);
+    }
+    case CardActionTypes.DELETE_CARD: {
+      return CardAdapter.removeOne((action as DeleteCard).cardId, state);
     }
     default: return state;
   }
