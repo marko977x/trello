@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { IconRegistryService } from 'src/app/services/icon-registry.service';
+import { Card } from 'src/app/models/card';
 
 const CLOSE_ICON: string = 'close-icon';
 const DESCRIPTION_ICON: string = 'description-icon';
@@ -14,6 +15,9 @@ export class CardDescriptionComponent implements OnInit {
   isEditableFormVisible: boolean;
   closeIcon: string;
   descriptionIcon: string;
+
+  @Input()
+  card: Card;
 
   constructor(private iconRegistry: IconRegistryService) {
     this.registerIcons();

@@ -1,14 +1,14 @@
-<div class="card-window">
+<div class="card-window" *ngIf="card$ | async as card">
   <div class="close-icon"><mat-icon svgIcon="close-icon"></mat-icon></div>
   <div class="window-header">
     <div class="card-icon"><mat-icon svgIcon="card-icon"></mat-icon></div>
-    <div class="card-title">Title</div>
+    <div class="card-title">{{card.title}}</div>
   </div>
   <div class="window-content">
     <div class="window-main-content">
-      <app-card-description></app-card-description>
-      <app-checklist></app-checklist>
+      <app-card-description [card]="card"></app-card-description>
+      <app-checklist *ngFor="let id of card.checklists" [checklistId]="id"></app-checklist>
     </div>
-    <div class="window-sidebar"></div>
+    <app-card-details-sidebar class="window-sidebar"></app-card-details-sidebar>
   </div>
 </div>

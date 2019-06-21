@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { IconRegistryService } from 'src/app/services/icon-registry.service';
+import { ChecklistItem } from 'src/app/models/checklist-item';
 
 const UNCHECKED_ITEM_ICON: string = 'uncheck-icon';
 const CHECKED_ITEM_ICON: string = 'checked-icon';
@@ -15,6 +16,9 @@ export class ChecklistItemComponent implements OnInit {
   closeIcon: string;
   isEditableFormVisible: boolean;
 
+  @Input()
+  item: ChecklistItem;
+
   constructor(private iconRegistry: IconRegistryService) {
     this.registerIcons();
   }
@@ -26,7 +30,7 @@ export class ChecklistItemComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.checkItemIcon = UNCHECKED_ITEM_ICON;
+    this.checkItemIcon = this.item.isChecked ? CHECKED_ITEM_ICON : UNCHECKED_ITEM_ICON;
     this.closeIcon = CLOSE_ICON;
     this.isEditableFormVisible = false;
   }

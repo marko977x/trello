@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   margin-top: 20px;
+  margin-bottom: 24px;
 }
 
 .description-header {
@@ -32,8 +33,19 @@
 }
 
 .description-content {
+  padding-left: 10px;
+}
+
+.current {
+  height: 100%;
+  background-color: rgba(9,30,66,.08);
+  display: flex;
+  align-items: center;
+  border-radius: 2px;
+}
+
+.current p {
   padding: 0px 10px;
-  width: 100%;
 }
 
 .mat-form-field {

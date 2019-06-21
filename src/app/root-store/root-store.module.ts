@@ -5,6 +5,9 @@ import { ListStoreModule } from './list-store/list-store.module';
 import { CardStoreModule } from './card-store/card-store.module';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { ChecklistStoreModule } from './checklist-store/checklist-store.module';
+import { UserStoreModule } from './user-store/user-store.module';
+import { ChecklistItemStoreModule } from './checklist-item-store/checklist-item-store.module';
 
 @NgModule({
   declarations: [],
@@ -13,6 +16,9 @@ import { EffectsModule } from '@ngrx/effects';
     BoardStoreModule,
     ListStoreModule,
     CardStoreModule,
+    ChecklistStoreModule,
+    UserStoreModule,
+    ChecklistItemStoreModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([])
   ]

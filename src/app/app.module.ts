@@ -16,6 +16,8 @@ import { CardDetailsWindowComponent } from './components/card-details-window/car
 import { CardDescriptionComponent } from './components/card-description/card-description.component';
 import { ChecklistComponent } from './components/checklist/checklist.component';
 import { ChecklistItemComponent } from './components/checklist-item/checklist-item.component';
+import { CardDetailsSidebarComponent } from './components/card-details-sidebar/card-details-sidebar.component';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { ChecklistItemComponent } from './components/checklist-item/checklist-it
     CardDetailsWindowComponent,
     CardDescriptionComponent,
     ChecklistComponent,
-    ChecklistItemComponent
+    ChecklistItemComponent,
+    CardDetailsSidebarComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,10 @@ import { ChecklistItemComponent } from './components/checklist-item/checklist-it
     BrowserAnimationsModule,
     AppMaterialModule,
     HttpClientModule,
-    RootStoreModule
+    RootStoreModule,
+    StoreDevtoolsModule.instrument({
+      maxAge: 25
+    }),
   ],
   entryComponents: [CardDetailsWindowComponent],
   providers: [],

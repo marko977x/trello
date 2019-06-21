@@ -1,6 +1,6 @@
 <mat-card class="list-wrapper" *ngIf="list$ | async as list">
   <div class="list-header">
-    <label class="list-header-label">To Do</label>
+    <label class="list-header-label">{{list.title}}</label>
   </div>
   <div 
       cdkDropList
@@ -9,7 +9,10 @@
       [cdkDropListData]="list.cards"
       (cdkDropListDropped)="drop($event)"
       [cdkDropListConnectedTo]="connectedListsIds">
-    <app-card-details class="card" *ngFor="let card of list.cards"  cdkDrag [title]="card"></app-card-details>
+    <app-card-details 
+      class="card" *ngFor="let card of list.cards"
+      cdkDrag [title]="card" [id]="card">
+    </app-card-details>
   </div>
   <mat-card-actions class="list-actions">
     <button mat-button>

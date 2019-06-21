@@ -20,5 +20,89 @@
       "boardId": "asdg",
       "cards": ["card3", "card4"]
     }
+  ],
+  "cards": [
+    {
+      "id": "card1",
+      "title": "Card Title 1",
+      "boardId": "board1",
+      "listId": "1",
+      "checklists": ["checklist1"],
+      "description": "Checklist 1 Description"
+    },
+    {
+      "id": "card2",
+      "title": "Card Title 2",
+      "boardId": "board1",
+      "listId": "1",
+      "checklists": ["checklist2"],
+      "description": "Checklist 2 Description"
+    },
+    {
+      "id": "card3",
+      "title": "Card Title 3",
+      "boardId": "board1",
+      "listId": "2",
+      "checklists": ["checklist3"],
+      "description": "Checklist 3 Description"
+    },
+    {
+      "id": "card4",
+      "title": "Card Title 4",
+      "boardId": "board1",
+      "listId": "2",
+      "checklists": ["checklist4"],
+      "description": "Checklist 4 Description"
+    }
+  ],
+  "checklists": [
+    {
+      "id": "checklist1",
+      "items": ["item1", "item2"]
+    },
+    {
+      "id": "checklist2",
+      "items": ["item3", "item4"]
+    },
+    {
+      "id": "checklist3",
+      "items": ["item5"]
+    },
+    {
+      "id": "checklist4",
+      "items": ["item6"]
+    }
+  ],
+  "checklistItems": [
+    {
+      "id": "item1",
+      "text": "Item one text",
+      "isChecked": false
+    },
+    {
+      "id": "item2",
+      "text": "Item two text",
+      "isChecked": false
+    },
+    {
+      "id": "item3",
+      "text": "Item three text",
+      "isChecked": true
+    },
+    {
+      "id": "item4",
+      "text": "Item four text",
+      "isChecked": false
+    },
+    {
+      "id": "item5",
+      "text": "Item five text",
+      "isChecked": false
+    },
+    {
+      "id": "item6",
+      "text": "Item six text",
+      "isChecked": false
+    }
   ]
 }

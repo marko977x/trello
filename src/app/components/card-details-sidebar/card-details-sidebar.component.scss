@@ -1,0 +1,30 @@
+.window-sidebar {
+  width: 100%;
+  padding-left: 8px;
+}
+
+.actions {
+  width: 100%;
+}
+
+.actions-title {
+  color: #6b778c;
+}
+
+.checklist-button {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  padding: 0px;
+  background-color: #ebecf0;
+  margin: 5px 0px 0px 5px;
+}
+
+.icon {
+  transform: scale(0.5);
+}
+
+.action-label {
+  font-weight: bold;
+  width: 100%;
+}

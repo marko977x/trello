@@ -9,7 +9,17 @@
 }
 
 .window-content {
-  margin-top: 40px;
+  margin-top: 20px;
+  display: flex;
+}
+
+.window-main-content {
+  width: 552px;
+  padding-right: 8px;
+}
+
+.window-sidebar {
+  width: 192px;
 }
 
 .card-icon {
