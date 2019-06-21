@@ -1,6 +1,9 @@
 import { initialState, CardState, CardAdapter } from "./state";
 import { Action } from '@ngrx/store';
 import { CardActionTypes, LoadCardsSuccess, LoadCardsError } from './actions';
+import { ChecklistActionTypes, DeleteChecklist } from '../checklist-store/actions';
+import { Update } from '@ngrx/entity';
+import { Card } from 'src/app/models/card';
 
 function reducer(state = initialState, action: Action): CardState {
   switch(action.type) {
@@ -18,6 +21,16 @@ function reducer(state = initialState, action: Action): CardState {
       return {
         ...state, loaded: false, error: (action as LoadCardsError).error
       }
+    }
+    case ChecklistActionTypes.DELETE_CHECKLIST: {
+      const {cardId, checklistId} = (action as DeleteChecklist);
+      const checklists: string[] = state.entities[cardId].checklists.filter(item => item !== checklistId);
+      const update: Update<Card> = {
+        id: cardId,
+        changes: { checklists }
+      };
+
+      return CardAdapter.updateOne(update, state);
     }
     default: return state;
   }

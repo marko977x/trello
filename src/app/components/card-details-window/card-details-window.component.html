@@ -7,7 +7,9 @@
   <div class="window-content">
     <div class="window-main-content">
       <app-card-description [card]="card"></app-card-description>
-      <app-checklist *ngFor="let id of card.checklists" [checklistId]="id"></app-checklist>
+      <app-checklist *ngFor="let id of card.checklists" 
+        [cardId]="card.id" [checklistId]="id">
+      </app-checklist>
     </div>
     <app-card-details-sidebar class="window-sidebar"></app-card-details-sidebar>
   </div>

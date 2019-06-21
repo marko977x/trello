@@ -1,6 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { IconRegistryService } from 'src/app/services/icon-registry.service';
 import { ChecklistItem } from 'src/app/models/checklist-item';
+import { Store } from '@ngrx/store';
+import { RootState } from 'src/app/root-store/root-state';
+import { ToggleChecklistItem, DeleteChecklistItem } from 'src/app/root-store/checklist-item-store/actions';
 
 const UNCHECKED_ITEM_ICON: string = 'uncheck-icon';
 const CHECKED_ITEM_ICON: string = 'checked-icon';
@@ -19,8 +22,10 @@ export class ChecklistItemComponent implements OnInit {
   @Input()
   item: ChecklistItem;
 
-  constructor(private iconRegistry: IconRegistryService) {
-    this.registerIcons();
+  constructor(
+    private iconRegistry: IconRegistryService,
+    private store$: Store<RootState>) {
+      this.registerIcons();
   }
 
   registerIcons() {
@@ -36,8 +41,12 @@ export class ChecklistItemComponent implements OnInit {
   }
 
   toggleCheckbox() {
-    this.checkItemIcon = this.checkItemIcon === UNCHECKED_ITEM_ICON ? 
-      CHECKED_ITEM_ICON : UNCHECKED_ITEM_ICON;
+    this.store$.dispatch(new ToggleChecklistItem(this.item.id));
+  }
+
+  deleteItem() {
+    console.log(this.item);
+    this.store$.dispatch(new DeleteChecklistItem(this.item.checklist, this.item.id));
   }
 
   hideEditableForm() {

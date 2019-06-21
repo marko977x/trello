@@ -77,32 +77,38 @@
     {
       "id": "item1",
       "text": "Item one text",
-      "isChecked": false
+      "isChecked": false,
+      "checklist": "checklist1"
     },
     {
       "id": "item2",
       "text": "Item two text",
-      "isChecked": false
+      "isChecked": false,
+      "checklist": "checklist1"
     },
     {
       "id": "item3",
       "text": "Item three text",
-      "isChecked": true
+      "isChecked": true,
+      "checklist": "checklist2"
     },
     {
       "id": "item4",
       "text": "Item four text",
-      "isChecked": false
+      "isChecked": false,
+      "checklist": "checklist2"
     },
     {
       "id": "item5",
       "text": "Item five text",
-      "isChecked": false
+      "isChecked": false,
+      "checklist": "checklist3"
     },
     {
       "id": "item6",
       "text": "Item six text",
-      "isChecked": false
+      "isChecked": false,
+      "checklist": "checklist4"
     }
   ]
 }

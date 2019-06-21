@@ -5,7 +5,7 @@
   <div class="checklist-content">
     <div class="item-text" *ngIf="!isEditableFormVisible">
       <p (click)="showEditableForm()">{{item.text}}</p>
-      <button mat-mini-fab class="delete-item-button">
+      <button mat-mini-fab class="delete-item-button" (click)="deleteItem()">
         <mat-icon class="delete-item-icon" svgIcon="close-icon"></mat-icon>
       </button> 
     </div>

@@ -4,7 +4,8 @@ import { Checklist } from 'src/app/models/checklist';
 export enum ChecklistActionTypes {
   LOAD_CHECKLISTS = '[CHECKLIST] Load Checklists',
   LOAD_CHECKLISTS_SUCCESS = '[CHECKLIST] Load Checklists Success',
-  LOAD_CHECKLISTS_ERROR = '[CHECKLIST] Load Checklists Error'
+  LOAD_CHECKLISTS_ERROR = '[CHECKLIST] Load Checklists Error',
+  DELETE_CHECKLIST = '[CHECKLIST] Delete Checklists'
 }
 
 export class LoadChecklists implements Action {
@@ -19,4 +20,9 @@ export class LoadChecklistsSuccess implements Action {
 export class LoadChecklistsError implements Action {
   readonly type = ChecklistActionTypes.LOAD_CHECKLISTS_ERROR;
   constructor(public error: any) {}
+}
+
+export class DeleteChecklist implements Action {
+  readonly type = ChecklistActionTypes.DELETE_CHECKLIST;
+  constructor(public cardId: string, public checklistId: string) {}
 }

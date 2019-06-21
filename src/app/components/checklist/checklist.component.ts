@@ -7,6 +7,7 @@ import { Checklist } from 'src/app/models/checklist';
 import { selectChecklistById } from 'src/app/root-store/checklist-store/selectors';
 import { ChecklistItem } from 'src/app/models/checklist-item';
 import { selectChecklistItems } from 'src/app/root-store/checklist-item-store/selectors';
+import { DeleteChecklist } from 'src/app/root-store/checklist-store/actions';
 
 @Component({
   selector: 'app-checklist',
@@ -18,6 +19,8 @@ export class ChecklistComponent implements OnInit {
 
   @Input()
   checklistId: string;
+  @Input()
+  cardId: string;
 
   constructor(
       private iconRegistry: IconRegistryService,
@@ -36,9 +39,14 @@ export class ChecklistComponent implements OnInit {
   calculateProgressPercentage(): number {
     let result: number = 0;
     this.checklistItems$.subscribe(items => {
-      result = items.filter(item => item.isChecked).length / items.length;
+      if(items)
+        result = items.filter(item => item.isChecked).length / items.length;
     });
     return result * 100;
+  }
+
+  deleteChecklist() {
+    this.store$.dispatch(new DeleteChecklist(this.cardId, this.checklistId));
   }
 
 }

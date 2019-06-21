@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import { MatIconRegistry, MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { CardDetailsWindowComponent } from '../card-details-window/card-details-window.component';
 import { IconRegistryService } from 'src/app/services/icon-registry.service';
 import { Observable } from 'rxjs';
@@ -8,7 +7,6 @@ import { Card } from 'src/app/models/card';
 import { Store } from '@ngrx/store';
 import { RootState } from 'src/app/root-store/root-state';
 import { selectCardById } from 'src/app/root-store/card-store/selectors';
-import { Checklist } from 'src/app/models/checklist';
 import { selectCardChecklistsItems } from 'src/app/root-store/checklist-item-store/selectors';
 import { ChecklistItem } from 'src/app/models/checklist-item';
 
@@ -46,9 +44,10 @@ export class CardDetailsComponent implements OnInit {
   } 
 
   calculateChecklistItemsRatio(): string {
-    let result: string = "";
+    let result: string = "0/0";
     this.cardChecklistItems$.subscribe(items => {
-      result = items.filter(item => item.isChecked).length + "/" + items.length;
+      if(items)
+        result = items.filter(item => item.isChecked).length + "/" + items.length;
     });
     return result;
   }
