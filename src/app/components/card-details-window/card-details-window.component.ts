@@ -6,6 +6,7 @@ import { RootState } from 'src/app/root-store/root-state';
 import { Store } from '@ngrx/store';
 import { selectCardById } from 'src/app/root-store/card-store/selectors';
 import { MatDialogRef } from '@angular/material';
+import { ChangeCardTitle } from 'src/app/root-store/card-store/actions';
 
 @Component({
   selector: 'app-card-details-window',
@@ -14,6 +15,7 @@ import { MatDialogRef } from '@angular/material';
 })
 export class CardDetailsWindowComponent implements OnInit {
   card$: Observable<Card>;
+  isEditFieldVisible: boolean;
 
   constructor(
     private iconRegistry: IconRegistryService,
@@ -28,10 +30,24 @@ export class CardDetailsWindowComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isEditFieldVisible = false;
   }
 
   closeDialog() {
     this.dialogRef.close();
+  }
+
+  showEditableForm() {
+    this.isEditFieldVisible = true;
+  }
+
+  closeEditableForm() {
+    this.isEditFieldVisible = false;
+  }
+
+  saveCardTitle(title: string, cardId: string) {
+    this.store$.dispatch(new ChangeCardTitle(cardId, title));
+    this.closeEditableForm();
   }
 
 }

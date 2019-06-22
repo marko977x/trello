@@ -1,0 +1,22 @@
+.container {
+  overflow: hidden;
+  width: auto;
+  height: auto;
+  margin: 15px;
+  padding: 5px
+}
+
+.container h1 {
+  text-align: center;
+}
+
+.mat-dialog-actions {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0px;
+}
+
+.mat-dialog-actions button {
+  flex: 1;
+  height: 100%;
+}

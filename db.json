@@ -59,18 +59,22 @@
   "checklists": [
     {
       "id": "checklist1",
+      "title": "checklist 1",
       "items": ["item1", "item2"]
     },
     {
       "id": "checklist2",
+      "title": "checklist 1",
       "items": ["item3", "item4"]
     },
     {
       "id": "checklist3",
+      "title": "checklist 1",
       "items": ["item5"]
     },
     {
       "id": "checklist4",
+      "title": "checklist 1",
       "items": ["item6"]
     }
   ],

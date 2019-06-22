@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { IconRegistryService } from 'src/app/services/icon-registry.service';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef, MatDialog } from '@angular/material';
 import { CardDetailsWindowComponent } from '../card-details-window/card-details-window.component';
 import { RootState } from 'src/app/root-store/root-state';
 import { Store } from '@ngrx/store';
 import { DeleteCard } from 'src/app/root-store/card-store/actions';
 import { Card } from 'src/app/models/card';
+import { SimpleModalComponent } from '../simple-modal/simple-modal.component';
+import { AddChecklist } from 'src/app/root-store/checklist-store/actions';
+import * as uuid from "uuid";
 
 const CHECKBOX_ICON: string = 'check-box-icon';
 const MOVE_ICON: string = 'move-icon';
@@ -24,8 +27,9 @@ export class CardDetailsSidebarComponent implements OnInit {
 
   constructor(
     private iconRegistry: IconRegistryService,
-    private dialogRef: MatDialogRef<CardDetailsWindowComponent>,
-    private store$: Store<RootState>) {
+    private cardDetailsDialog: MatDialogRef<CardDetailsWindowComponent>,
+    private store$: Store<RootState>,
+    private matDialog: MatDialog) {
       this.registerIcons();
   }
 
@@ -36,12 +40,32 @@ export class CardDetailsSidebarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dialogRef.componentInstance.card$.subscribe(card => this.card = card);
+    this.cardDetailsDialog.componentInstance.card$.subscribe(card => this.card = card);
   }
 
-  closeDialog() {
-    this.dialogRef.close();
+  deleteCard() {
+    this.cardDetailsDialog.close();
     this.store$.dispatch(new DeleteCard(this.card.listId, this.card.id));
   }
 
+  openNewChecklistModal() {
+    let dialogRef = this.matDialog.open(SimpleModalComponent);
+
+    dialogRef.componentInstance.OnSubmit.subscribe(
+      (checklistTitle: string) => {
+        this.createChecklist(checklistTitle);
+        dialogRef.close();
+      });
+
+    dialogRef.componentInstance.OnCancel.subscribe(() => dialogRef.close());
+  }
+
+  createChecklist(checklistTitle: string) {
+    console.log(checklistTitle);
+    this.store$.dispatch(new AddChecklist(this.card.id, {
+      id: uuid.v4(),
+      title: checklistTitle,
+      items: []
+    }));
+  }
 }

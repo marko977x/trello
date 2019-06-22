@@ -12,7 +12,7 @@
       <img src="{{getBoardImage(board.backgroundIndex)}}" height="100%" width="100%"/>
       <p class="board-name">{{board.title}}</p>
     </mat-card>
-    <mat-card class="board-card">
+    <mat-card class="board-card" (click)="openNewBoardDialog()">
       <p>Create new board...</p>
     </mat-card>
   </div>

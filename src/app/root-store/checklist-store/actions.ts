@@ -6,7 +6,8 @@ export enum ChecklistActionTypes {
   LOAD_CHECKLISTS_SUCCESS = '[CHECKLIST] Load Checklists Success',
   LOAD_CHECKLISTS_ERROR = '[CHECKLIST] Load Checklists Error',
   DELETE_CHECKLIST = '[CHECKLIST] Delete Checklists',
-  SWAP_ITEMS = '[CHECKLIST] Swap Items'
+  SWAP_ITEMS = '[CHECKLIST] Swap Items',
+  ADD_CHECKLIST = '[CHECKLIST] Add Checklist'
 }
 
 export class LoadChecklists implements Action {
@@ -34,4 +35,9 @@ export class SwapItems implements Action {
     public checklistId: string, 
     public previousIndex: number,
     public currentIndex: number) {}
+}
+
+export class AddChecklist implements Action {
+  readonly type = ChecklistActionTypes.ADD_CHECKLIST;
+  constructor(public cardId: string, public checklist: Checklist) {}
 }

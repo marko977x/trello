@@ -22,6 +22,7 @@ const CLOSE_ICON: string = "close-icon";
 })
 export class ChecklistComponent implements OnInit {
   checklistItems$: Observable<ChecklistItem[]>;
+  checklist$: Observable<Checklist>;
   isEditableFormVisible: boolean;
   closeIcon: string = CLOSE_ICON;
   checkboxIcon: string = CHECKBOX_ICON;
@@ -44,13 +45,15 @@ export class ChecklistComponent implements OnInit {
 
   ngOnInit() {
     this.checklistItems$ = this.store$.select(selectChecklistItems(this.checklistId));
+    this.checklist$ = this.store$.select(selectChecklistById(this.checklistId));
   }
 
   calculateProgressPercentage(): string {
     let result: number = 0;
     this.checklistItems$.subscribe(items => {
-      if(items)
+      if(items && items.length != 0)
         result = items.filter(item => item.isChecked).length / items.length;
+      else return 0;
     });
     return (result * 100).toFixed(0);
   }

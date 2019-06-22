@@ -19,6 +19,7 @@ export class CardDescriptionComponent implements OnInit {
   closeIcon: string;
   descriptionIcon: string;
   descriptionValue: string;
+  defaultDescriptionValue: string = "Add a more detailed description";
 
   @Input()
   card: Card;
@@ -59,6 +60,12 @@ export class CardDescriptionComponent implements OnInit {
   saveDescription() {
     this.store$.dispatch(new SaveDescription(this.card.id, this.descriptionValue));
     this.hideEditableForm();
+  }
+
+  getDescriptionValue() {
+    console.log("call");
+    return this.card.description === "" ? 
+      this.defaultDescriptionValue : this.card.description;
   }
 
 }

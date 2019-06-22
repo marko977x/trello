@@ -5,7 +5,7 @@
       <div><h3 class="description-label">Description</h3></div>
       <div class="description-content">
         <div class="current" (click)="changeFocusToEditableForm()" *ngIf="!isEditableFormVisible">
-          <p>{{card.description}}</p>
+          <p>{{getDescriptionValue()}}</p>
         </div>
         <div class="editable-form" *ngIf="isEditableFormVisible">
           <mat-form-field class="input-wrapper" appearance="outline">

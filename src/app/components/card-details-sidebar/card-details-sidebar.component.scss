@@ -11,13 +11,18 @@
   color: #6b778c;
 }
 
-.checklist-button {
+.sidebar-button {
   width: 100%;
   display: flex;
   justify-content: flex-start;
   padding: 0px;
   background-color: #ebecf0;
   margin: 5px 0px 0px 5px;
+}
+
+.editable-form {
+  display: flex;
+  flex-direction: column;
 }
 
 .icon {

@@ -1,7 +1,7 @@
 import { initialState, CardState, CardAdapter } from "./state";
 import { Action } from '@ngrx/store';
-import { CardActionTypes, LoadCardsSuccess, LoadCardsError, SaveDescription, DeleteCard, AddCard } from './actions';
-import { ChecklistActionTypes, DeleteChecklist } from '../checklist-store/actions';
+import { CardActionTypes, LoadCardsSuccess, LoadCardsError, SaveDescription, DeleteCard, AddCard, ChangeCardTitle } from './actions';
+import { ChecklistActionTypes, DeleteChecklist, AddChecklist } from '../checklist-store/actions';
 import { Update } from '@ngrx/entity';
 import { Card } from 'src/app/models/card';
 
@@ -45,6 +45,27 @@ function reducer(state = initialState, action: Action): CardState {
     }
     case CardActionTypes.ADD_CARD: {
       return CardAdapter.addOne((action as AddCard).card, state);
+    }
+    case ChecklistActionTypes.ADD_CHECKLIST: {
+      const {cardId, checklist} = (action as AddChecklist);
+      return {
+        ...state,
+        entities: {
+          ...state.entities,
+          [cardId]: {
+            ...state.entities[cardId],
+            checklists: [...state.entities[cardId].checklists, checklist.id]
+          }
+        }
+      }
+    }
+    case CardActionTypes.CHANGE_CARD_TITLE: {
+      const {cardId, title} = (action as ChangeCardTitle);
+      const update: Update<Card> = {
+        id: cardId,
+        changes: {title}
+      }
+      return CardAdapter.updateOne(update, state);
     }
     default: return state;
   }

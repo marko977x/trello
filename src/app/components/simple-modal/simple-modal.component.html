@@ -1,0 +1,12 @@
+<div class="container">
+  <h1 mat-dialog-title>New Checklist</h1>
+  <div mat-dialog-content>
+    <mat-form-field appearance="outline">
+      <input matInput placeholder="{{placeholder}}" (change)="onInputChange($event)"/>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="onSubmitClicked()">Submit</button>
+    <button mat-button color="warn" (click)="onCancelClicked()">Cancel</button>
+  </div>
+</div>

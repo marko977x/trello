@@ -2,6 +2,7 @@
   position: fixed;
   height: 100%;
   width: 100%;
+  overflow-x: inherit;
 }
 
 .header-container {
@@ -15,7 +16,6 @@
 .board-container {
   margin-top: 44px;
   height: 100%;
-  overflow-x: scroll;
 }
 
 img {

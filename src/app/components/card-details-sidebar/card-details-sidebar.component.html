@@ -1,15 +1,15 @@
 <div class="window-sidebar">
   <div class="actions">
     <div class="actions-title">ADD TO CARD</div>
-    <button mat-flat-button class="checklist-button">
+    <button mat-flat-button class="sidebar-button" (click)="openNewChecklistModal()">
       <mat-icon class="icon" svgIcon="{{checkboxIcon}}"></mat-icon>
       <span class="action-label">Checklist</span>
     </button>
-    <button mat-flat-button class="checklist-button">
+    <button mat-flat-button class="sidebar-button">
       <mat-icon class="icon" svgIcon="{{moveIcon}}"></mat-icon>
       <span class="action-label">Move</span>
     </button>
-    <button mat-flat-button class="checklist-button" (click)="closeDialog()">
+    <button mat-flat-button class="sidebar-button" (click)="deleteCard()">
       <mat-icon class="icon" svgIcon="{{deleteIcon}}"></mat-icon>
       <span class="action-label">Delete</span>
     </button>

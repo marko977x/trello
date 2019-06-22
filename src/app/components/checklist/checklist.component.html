@@ -2,7 +2,7 @@
   <div class="checklist-header">
     <div class="checklist-icon"><mat-icon svgIcon="{{checkboxIcon}}"></mat-icon></div>
     <div class="header-content">
-      <div><h3 class="header-title">Checklist</h3></div>
+      <div><h3 class="header-title" *ngIf="checklist$ | async as checklist">{{checklist.title}}</h3></div>
       <button mat-flat-button class="delete-button" (click)="deleteChecklist()">Delete</button>
     </div>
   </div>

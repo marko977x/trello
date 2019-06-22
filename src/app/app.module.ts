@@ -22,6 +22,7 @@ import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { DashboardComponent } from './containers/dashboard/dashboard.component';
 import { EditableFormComponent } from './components/editable-form/editable-form.component';
+import { SimpleModalComponent } from './components/simple-modal/simple-modal.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { EditableFormComponent } from './components/editable-form/editable-form.
     LoginComponent,
     SignUpComponent,
     DashboardComponent,
-    EditableFormComponent
+    EditableFormComponent,
+    SimpleModalComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,7 @@ import { EditableFormComponent } from './components/editable-form/editable-form.
       maxAge: 25
     }),
   ],
-  entryComponents: [CardDetailsWindowComponent],
+  entryComponents: [CardDetailsWindowComponent, SimpleModalComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -1,6 +1,6 @@
 import { initialState, ChecklistState, ChecklistAdapter } from "./state";
 import { Action } from '@ngrx/store';
-import { ChecklistActionTypes, LoadChecklistsSuccess, LoadChecklistsError, DeleteChecklist, SwapItems } from './actions';
+import { ChecklistActionTypes, LoadChecklistsSuccess, LoadChecklistsError, DeleteChecklist, SwapItems, AddChecklist } from './actions';
 import { ChecklistItemActionTypes, DeleteChecklistItem, AddChecklistItem } from '../checklist-item-store/actions';
 import { Update } from '@ngrx/entity';
 import { Checklist } from 'src/app/models/checklist';
@@ -57,6 +57,9 @@ function reducer(state = initialState, action: Action): ChecklistState {
         changes: {items: [...state.entities[checklistId].items, itemId]}
       }
       return ChecklistAdapter.updateOne(update, state);
+    }
+    case ChecklistActionTypes.ADD_CHECKLIST: {
+      return ChecklistAdapter.addOne((action as AddChecklist).checklist, state);
     }
     default: return state;
   }
