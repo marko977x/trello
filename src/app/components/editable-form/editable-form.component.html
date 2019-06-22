@@ -1,0 +1,13 @@
+<div class="editable-item-form">
+    <mat-form-field class="input-wrapper" appearance="outline">
+      <input 
+        matInput 
+        value="{{inputDefaultValue}}" 
+        (change)="onItemTextChange($event)"
+        placeholder="{{placeholderValue}}"/>
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="submitButtonClicked()">Save</button>
+      <span><button class="close-button" mat-mini-fab (click)="closeButtonClicked()">
+        <mat-icon class="close-icon" svgIcon='close-icon'></mat-icon>
+      </button></span>
+  </div>
