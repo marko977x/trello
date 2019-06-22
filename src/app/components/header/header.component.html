@@ -1,7 +1,7 @@
 <mat-toolbar class="mat-toolbar">
   <mat-toolbar-row class="mat-toolbar-row">
     <div class="board-icon">
-      <button class="home-icon-button" mat-flat-button routerLink="{{dashboardUrl}}">
+      <button class="home-icon-button" mat-flat-button router (click)="navigateToDashboard()">
         <mat-icon class="home-icon" svgIcon="home-icon" aria-hidden="false"></mat-icon>
       </button>
     </div>

@@ -7,7 +7,7 @@
     <mat-card 
       class="board-card" 
       *ngFor="let board of boards" 
-      (click)="openBoard(board)"
+      (click)="openBoard(board.id)"
       routerLink="/board">
       <img src="{{getBoardImage(board.backgroundIndex)}}" height="100%" width="100%"/>
       <p class="board-name">{{board.title}}</p>

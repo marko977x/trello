@@ -10,6 +10,9 @@ import { selectCardById } from 'src/app/root-store/card-store/selectors';
 import { selectCardChecklistsItems } from 'src/app/root-store/checklist-item-store/selectors';
 import { ChecklistItem } from 'src/app/models/checklist-item';
 
+const INCOMPLETED_CHECKLIST_ICON: string = 'check-box-icon';
+const COMPLETED_CHECKLIST_ICON: string = 'checked-icon';
+
 @Component({
   selector: 'app-card-details',
   templateUrl: './card-details.component.html',
@@ -31,6 +34,7 @@ export class CardDetailsComponent implements OnInit {
 
   registerIcons() {
     this.iconRegistry.registerIcon('check-box-icon');
+    this.iconRegistry.registerIcon('checked-icon');
   }
 
   ngOnInit() {
@@ -48,6 +52,17 @@ export class CardDetailsComponent implements OnInit {
     this.cardChecklistItems$.subscribe(items => {
       if(items)
         result = items.filter(item => item.isChecked).length + "/" + items.length;
+    });
+    return result;
+  }
+
+  getChecklistBadgeIcon(): string {
+    let result: string = INCOMPLETED_CHECKLIST_ICON;
+    this.cardChecklistItems$.subscribe(items => {
+      if(items && items.filter(item => !item.isChecked).length == 0) {
+        result = COMPLETED_CHECKLIST_ICON;
+      }
+      else result = INCOMPLETED_CHECKLIST_ICON;
     });
     return result;
   }

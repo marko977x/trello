@@ -4,7 +4,7 @@
   <div class="card-badges">
     <mat-icon 
       class="card-check-box-icon"
-      svgIcon="check-box-icon"
+      svgIcon="{{getChecklistBadgeIcon()}}"
       *ngIf="card.checklists.length !== 0">
     </mat-icon>
     <span class="check-box-label" *ngIf="cardChecklistItems$ | async as cardChecklistItems">

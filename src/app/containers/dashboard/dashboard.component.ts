@@ -26,8 +26,8 @@ export class DashboardComponent implements OnInit {
     return IMAGES_PATHS[index];
   }
 
-  openBoard(board: Board) {
-    this.store$.dispatch(new OpenBoard(board));
+  openBoard(boardId: string) {
+    this.store$.dispatch(new OpenBoard(boardId));
   }
 
 }

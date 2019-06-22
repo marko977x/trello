@@ -12,8 +12,8 @@
             <input matInput (change)="onDescriptionChange($event)" value="{{card.description}}"/>
           </mat-form-field>
           <button mat-raised-button color="primary" (click)="saveDescription()">Save</button>
-          <span><button class="close-button" mat-mini-fab (click)="hideEditableForm()">
-            <mat-icon class="close-icon" (click)="clearDescriptionValue()" svgIcon="{{closeIcon}}"></mat-icon>
+          <span><button class="close-button" mat-mini-fab (click)="onEditableFormClose()">
+            <mat-icon class="close-icon" svgIcon="{{closeIcon}}"></mat-icon>
           </button></span>
         </div>
       </div>

@@ -1,6 +1,6 @@
 <div class="checklist" *ngIf="checklistItems$ | async as items">
   <div class="checklist-header">
-    <div class="checklist-icon"><mat-icon svgIcon="check-box-icon"></mat-icon></div>
+    <div class="checklist-icon"><mat-icon svgIcon="{{checkboxIcon}}"></mat-icon></div>
     <div class="header-content">
       <div><h3 class="header-title">Checklist</h3></div>
       <button mat-flat-button class="delete-button" (click)="deleteChecklist()">Delete</button>
@@ -18,6 +18,19 @@
       <app-checklist-item
         *ngFor="let item of items" [item]="item" cdkDrag class="checklist-item">
       </app-checklist-item>
-    <button class="add-item-button" mat-flat-button>Add an item</button>
+    <button 
+      class="add-item-button" 
+      mat-flat-button (click)="showEditableForm()"
+      *ngIf="!isEditableFormVisible">
+        Add an item
+    </button>
+    <div class="editable-item-form" *ngIf="isEditableFormVisible">
+      <app-editable-form
+      [placeholderValue]="'Enter a text for new item'"
+      [inputDefaultValue]="''"
+      (closeButtonClickedEvent)="closeEditableForm()"
+      (submitButtonClickedEvent)="addNewItem($event)">
+    </app-editable-form>
+  </div>
   </div>
 </div>

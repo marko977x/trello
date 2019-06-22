@@ -1,7 +1,7 @@
 import { initialState, ListState, ListAdapter } from './state';
 import { Action } from '@ngrx/store';
-import { ListActionTypes, LoadLists, LoadListsSuccess, LoadListsError } from './actions';
-import { CardActionTypes, DeleteCard } from '../card-store/actions';
+import { ListActionTypes, LoadLists, LoadListsSuccess, LoadListsError, AddList, DeleteList } from './actions';
+import { CardActionTypes, DeleteCard, AddCard } from '../card-store/actions';
 import { List } from 'src/app/models/list';
 import { Update } from '@ngrx/entity';
 
@@ -30,6 +30,21 @@ function reducer(state = initialState, action: Action): ListState {
         changes: {cards}
       }
       return ListAdapter.updateOne(update, state);
+    }
+    case CardActionTypes.ADD_CARD: {
+      const {card, listId} = (action as AddCard);
+      const cardId: string = card.id;
+      const update: Update<List> = {
+        id: listId,
+        changes: {cards: [...state.entities[listId].cards, cardId]}
+      }
+      return ListAdapter.updateOne(update, state);
+    }
+    case ListActionTypes.ADD_LIST: {
+      return ListAdapter.addOne((action as AddList).list, state);
+    }
+    case ListActionTypes.DELETE_LIST: {
+      return ListAdapter.removeOne((action as DeleteList).listId, state);
     }
     default: return state;
   }

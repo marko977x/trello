@@ -5,20 +5,20 @@
       "title": "Board Title",
       "lists": ["1", "2"],
       "userId": "User Id",
-      "backgroundIndex": 0
+      "backgroundIndex": 3
     }
   ],
   "lists": [
     {
       "id": "1",
       "title": "title 1",
-      "boardId": "asdf",
+      "boardId": "board1",
       "cards": ["card1", "card2"]
     },
     {
       "id": "2",
       "title": "title 2",
-      "boardId": "asdg",
+      "boardId": "board1",
       "cards": ["card3", "card4"]
     }
   ],

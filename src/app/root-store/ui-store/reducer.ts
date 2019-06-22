@@ -5,21 +5,24 @@ import { getItemFromLocalStorage } from 'src/app/services/local-storage';
 
 export const initialState: Ui = {
   loggedUser: "user1",
-  isDashboardPage: false,
-  board: null
+  isDashboardPage: true,
+  boardId: ""
 }
 
 function reducer(state = initialState, action: Action): Ui {
   switch(action.type) {
     case UiActionTypes.SET_LOGGED_USER: {
       return {
-        ...state, loggedUser: (action as SetLoggedUser).userId
+        ...state, loggedUser: (action as SetLoggedUser).userId, isDashboardPage: true
       }
     }
     case UiActionTypes.OPEN_BOARD: {
       return {
-        ...state, board: (action as OpenBoard).board
+        ...state, boardId: (action as OpenBoard).boardId, isDashboardPage: false
       }
+    }
+    case UiActionTypes.NAVIGATE_TO_DASHBOARD: {
+      return {...state, isDashboardPage: true}
     }
     default: {
       const ui: Ui = getItemFromLocalStorage('ui');

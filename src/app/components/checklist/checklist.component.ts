@@ -8,7 +8,12 @@ import { selectChecklistById } from 'src/app/root-store/checklist-store/selector
 import { ChecklistItem } from 'src/app/models/checklist-item';
 import { selectChecklistItems } from 'src/app/root-store/checklist-item-store/selectors';
 import { DeleteChecklist, SwapItems } from 'src/app/root-store/checklist-store/actions';
-import { moveItemInArray, CdkDragDrop } from '@angular/cdk/drag-drop';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { AddChecklistItem } from 'src/app/root-store/checklist-item-store/actions';
+import * as uuid from "uuid";
+
+const CHECKBOX_ICON: string = 'check-box-icon';
+const CLOSE_ICON: string = "close-icon";
 
 @Component({
   selector: 'app-checklist',
@@ -17,6 +22,9 @@ import { moveItemInArray, CdkDragDrop } from '@angular/cdk/drag-drop';
 })
 export class ChecklistComponent implements OnInit {
   checklistItems$: Observable<ChecklistItem[]>;
+  isEditableFormVisible: boolean;
+  closeIcon: string = CLOSE_ICON;
+  checkboxIcon: string = CHECKBOX_ICON;
 
   @Input()
   checklistId: string;
@@ -30,20 +38,21 @@ export class ChecklistComponent implements OnInit {
   }
 
   registerIcons() {
-    this.iconRegistry.registerIcon('check-box-icon');
+    this.iconRegistry.registerIcon(CHECKBOX_ICON);
+    this.iconRegistry.registerIcon(CLOSE_ICON);
   }
 
   ngOnInit() {
     this.checklistItems$ = this.store$.select(selectChecklistItems(this.checklistId));
   }
 
-  calculateProgressPercentage(): number {
+  calculateProgressPercentage(): string {
     let result: number = 0;
     this.checklistItems$.subscribe(items => {
       if(items)
         result = items.filter(item => item.isChecked).length / items.length;
     });
-    return result * 100;
+    return (result * 100).toFixed(0);
   }
 
   deleteChecklist() {
@@ -52,6 +61,25 @@ export class ChecklistComponent implements OnInit {
 
   drop(event: CdkDragDrop<string[]>) {
     this.store$.dispatch(new SwapItems(this.checklistId, event.previousIndex, event.currentIndex));
+  }
+  
+  closeEditableForm() {
+    this.isEditableFormVisible = false;
+  }
+
+  addNewItem(newItemText: string) {
+    this.store$.dispatch(new AddChecklistItem(this.checklistId, {
+      id: uuid.v4(),
+      checklist: this.checklistId,
+      isChecked: false,
+      text: newItemText
+    }));
+
+    this.closeEditableForm();
+  }
+
+  showEditableForm() {
+    this.isEditableFormVisible = true;
   }
 
 }

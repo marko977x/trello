@@ -6,7 +6,8 @@ export enum CardActionTypes {
   LOAD_CARDS_SUCCESS = '[CARD] Load Cards Success',
   LOAD_CARDS_ERROR = '[CARD] Load Cards Error',
   SAVE_DESCRIPTION = '[CARD] Save Description',
-  DELETE_CARD = '[CARD] Delete Card'
+  DELETE_CARD = '[CARD] Delete Card',
+  ADD_CARD = '[CARD] Add Card'
 }
 
 export class LoadCards implements Action {
@@ -31,4 +32,9 @@ export class SaveDescription implements Action {
 export class DeleteCard implements Action {
   readonly type = CardActionTypes.DELETE_CARD;
   constructor(public listId: string, public cardId: string) {}
+}
+
+export class AddCard implements Action {
+  readonly type = CardActionTypes.ADD_CARD;
+  constructor(public listId: string, public card: Card) {}
 }

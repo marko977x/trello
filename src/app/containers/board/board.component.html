@@ -3,7 +3,6 @@
   <div class="header-container">
     <app-header></app-header>
   </div>
-
   <div class="board-container">
     <div
       cdkDropList [cdkDropListData]="board.lists"
@@ -16,6 +15,21 @@
           class="board-list" [listId]="list"
           [connectedListsIds]="board.lists">
         </app-list>
-    </div>
+        <div class="add-new-list-container">
+          <div class="add-new-list" *ngIf="!isEditableFormVisible">
+            <button class="add-list-button" mat-button (click)="showEditableForm()">
+              <mat-icon class="plus-icon" svgIcon='plus-icon'></mat-icon>Add another list
+            </button>
+          </div>
+          <div *ngIf="isEditableFormVisible" class="editable-form">
+            <app-editable-form
+              [placeholderValue]="'Enter a title for new list'"
+              [inputDefaultValue]="''"
+              (closeButtonClickedEvent)="closeEditableForm()"
+              (submitButtonClickedEvent)="addNewList($event)">
+            </app-editable-form>
+          </div>
+        </div>
+      </div>
   </div>
 </div>

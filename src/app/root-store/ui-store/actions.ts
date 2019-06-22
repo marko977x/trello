@@ -3,7 +3,8 @@ import { Board } from 'src/app/models/board';
 
 export enum UiActionTypes {
   SET_LOGGED_USER = '[UI] Set Logged User',
-  OPEN_BOARD = '[UI] Open Board'
+  OPEN_BOARD = '[UI] Open Board',
+  NAVIGATE_TO_DASHBOARD = '[UI] Navigate To Dashboard'
 }
 
 export class SetLoggedUser implements Action {
@@ -13,5 +14,10 @@ export class SetLoggedUser implements Action {
 
 export class OpenBoard implements Action {
   readonly type = UiActionTypes.OPEN_BOARD;
-  constructor(public board: Board) {}
+  constructor(public boardId: string) {}
+}
+
+export class NavigateToDashboard implements Action {
+  readonly type = UiActionTypes.NAVIGATE_TO_DASHBOARD;
+  constructor() {}
 }

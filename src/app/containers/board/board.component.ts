@@ -3,10 +3,15 @@ import { moveItemInArray, CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { Board } from 'src/app/models/board';
-import { selectBoardById } from 'src/app/root-store/board-store/selectors';
+import { selectBoardById, selectSelectedBoard } from 'src/app/root-store/board-store/selectors';
 import { RootState } from 'src/app/root-store/root-state';
-import { selectSelectedBoard } from 'src/app/root-store/ui-store/selectors';
 import { IMAGES_PATHS } from 'src/app/models/app';
+import { IconRegistryService } from 'src/app/services/icon-registry.service';
+import { AddBoard } from 'src/app/root-store/board-store/actions';
+import { getItemFromLocalStorage } from 'src/app/services/local-storage';
+import { Ui } from 'src/app/models/ui';
+import * as uuid from "uuid";
+import { AddList } from 'src/app/root-store/list-store/actions';
 
 @Component({
   selector: 'app-board',
@@ -16,8 +21,16 @@ import { IMAGES_PATHS } from 'src/app/models/app';
 
 export class BoardComponent implements OnInit {
   board$: Observable<Board>;
+  isEditableFormVisible: boolean;
 
-  constructor(private store$: Store<RootState>) {
+  constructor(
+    private store$: Store<RootState>,
+    private iconRegistry: IconRegistryService) {
+      this.registerIcons();
+  }
+
+  registerIcons() {
+    this.iconRegistry.registerIcon('plus-icon');
   }
 
   ngOnInit() {
@@ -30,6 +43,26 @@ export class BoardComponent implements OnInit {
 
   getBackgroundImage(index: number) {
     return IMAGES_PATHS[index];
+  }
+
+  showEditableForm() {
+    this.isEditableFormVisible = true;
+  }
+
+  closeEditableForm() {
+    this.isEditableFormVisible = false;
+  }
+
+  addNewList(listTitle: string) {
+    let boardId: string = getItemFromLocalStorage<Ui>('ui').boardId;
+    this.store$.dispatch(new AddList(boardId, {
+      id: uuid.v4(),
+      boardId: boardId,
+      cards: [],
+      title: listTitle
+    }));
+
+    this.closeEditableForm();
   }
 
 }

@@ -51,8 +51,9 @@ export class CardDescriptionComponent implements OnInit {
     this.descriptionValue = event.target.value;
   }
 
-  clearDescriptionValue() {
+  onEditableFormClose() {
     this.descriptionValue = this.card.description;
+    this.hideEditableForm();
   }
 
   saveDescription() {
