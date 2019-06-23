@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatMenuModule, MatIconModule, MatToolbarModule, MatButtonModule, MatInputModule, MatFormFieldModule, MatCardModule, MatDialogModule, MatProgressBarModule, MatCheckboxModule, MatTabGroup, MatTabsModule } from "@angular/material";
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     MatDialogModule,
     MatProgressBarModule,
     MatCheckboxModule,
-    MatTabsModule
+    MatTabsModule,
+    ReactiveFormsModule
   ],
   exports: [
     MatMenuModule,
@@ -33,7 +35,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     MatDialogModule,
     MatProgressBarModule,
     MatCheckboxModule,
-    MatTabsModule
+    MatTabsModule,
+    ReactiveFormsModule
   ]
 })
 export class AppMaterialModule { }

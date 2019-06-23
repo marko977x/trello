@@ -23,6 +23,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { DashboardComponent } from './containers/dashboard/dashboard.component';
 import { EditableFormComponent } from './components/editable-form/editable-form.component';
 import { SimpleModalComponent } from './components/simple-modal/simple-modal.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [

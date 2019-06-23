@@ -20,11 +20,11 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.ui$.subscribe(ui => {
-      if(!isEmpty(ui) && ui.loggedUser != "") {
-        this.router.navigate(['dashboard']);
-      }
-    });
+    // this.ui$.subscribe(ui => {
+    //   if(!isEmpty(ui) && ui.loggedUser != "") {
+    //     this.router.navigate(['dashboard']);
+    //   }
+    // });
   }
   
 }

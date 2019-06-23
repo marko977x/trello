@@ -2,11 +2,13 @@
   <h1>Log in to Trello</h1>
   <mat-form-field class="field" appearance="outline">
     <mat-label>Email</mat-label>
-    <input matInput placeholder="Enter your email">
+    <input matInput placeholder="Enter your email" [formControl]="email" required>
+    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
   </mat-form-field>
   <mat-form-field class="field" appearance="outline">
     <mat-label>Password</mat-label>
-    <input matInput placeholder="Enter your password">
+    <input matInput placeholder="Enter your password" [formControl]="password" [type]="'password'">
+    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
   </mat-form-field>
-  <button mat-raised-button color="primary">Log In</button>
+  <button mat-raised-button color="primary" (click)="login()">Log In</button>
 </div>

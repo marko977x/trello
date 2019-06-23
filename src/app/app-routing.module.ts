@@ -10,7 +10,7 @@ export const BOARD_URL = "/board";
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'home',
     component: HomeComponent
   },
   {

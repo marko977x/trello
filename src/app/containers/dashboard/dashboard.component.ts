@@ -12,6 +12,7 @@ import { SimpleModalComponent } from 'src/app/components/simple-modal/simple-mod
 import { AddBoard } from 'src/app/root-store/board-store/actions';
 import { getItemFromLocalStorage } from 'src/app/services/local-storage';
 import * as uuid from "uuid";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -23,7 +24,8 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private store$: Store<RootState>,
-    private newBoardDialog: MatDialog) { }
+    private newBoardDialog: MatDialog,
+    private router: Router) { }
 
   ngOnInit() {
     this.boards$ = this.store$.select(selectLoggedUserBoards());
@@ -35,6 +37,7 @@ export class DashboardComponent implements OnInit {
 
   openBoard(boardId: string) {
     this.store$.dispatch(new OpenBoard(boardId));
+    this.router.navigate(['/board']);
   }
 
   openNewBoardDialog() {
@@ -44,7 +47,7 @@ export class DashboardComponent implements OnInit {
     dialog.componentInstance.OnSubmit.subscribe((boardTitle: string) => {
       this.createBoard(boardTitle);
       dialog.close();
-    })
+    });
   }
 
   createBoard(boardTitle: string) {

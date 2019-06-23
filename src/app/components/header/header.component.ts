@@ -9,7 +9,8 @@ import { Ui } from 'src/app/models/ui';
 import { DASHBOARD_URL } from 'src/app/app-routing.module';
 import { isEmpty } from 'src/app/services/object-checker';
 import { RouterLink, Router } from '@angular/router';
-import { NavigateToDashboard } from 'src/app/root-store/ui-store/actions';
+import { NavigateToDashboard, ClearUiStore } from 'src/app/root-store/ui-store/actions';
+import { removeItemFromLocalStorage } from 'src/app/services/local-storage';
 
 @Component({
   selector: 'app-header',
@@ -38,8 +39,10 @@ export class HeaderComponent implements OnInit {
     this.store$.select(state => state).subscribe(state => {
       if(!isEmpty(state.ui) && !isEmpty(state.board.entities)) {
         this.ui = state.ui;
-        this.dashboardTitle = state.ui.isDashboardPage ? 
-          this.dashboardDefaultTitle : state.board.entities[this.ui.boardId].title;
+        if(!state.ui.isDashboardPage && !isEmpty(state.ui.boardId))
+          this.dashboardTitle = state.board.entities[this.ui.boardId].title;
+        else
+          this.dashboardTitle = this.dashboardDefaultTitle;
       }
     });
   }
@@ -53,6 +56,12 @@ export class HeaderComponent implements OnInit {
   navigateToDashboard() {
     this.router.navigate(['/' + this.dashboardUrl]);
     this.store$.dispatch(new NavigateToDashboard());
+  }
+
+  logout() {
+    this.store$.dispatch(new ClearUiStore());
+    removeItemFromLocalStorage('ui');
+    this.router.navigate(['/home']);
   }
 
 }

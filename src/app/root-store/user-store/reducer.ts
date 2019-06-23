@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 import { UserState, UserAdapter, initialState } from './state';
-import { UserActionTypes, LoadUserSuccess, LoadUsersError } from './actions';
+import { UserActionTypes, LoadUserSuccess, LoadUsersError, SignUp } from './actions';
 import { BoardActionTypes, AddBoard } from '../board-store/actions';
 import { User } from 'src/app/models/user';
 import { Update } from '@ngrx/entity';
@@ -29,6 +29,9 @@ function reducer(state = initialState, action: Action): UserState {
         changes: {boards: [...state.entities[userId].boards, board.id]}
       }
       return UserAdapter.updateOne(update, state);
+    }
+    case UserActionTypes.SIGN_UP: {
+      return UserAdapter.addOne((action as SignUp).user, state);
     }
     default: return state;
   }

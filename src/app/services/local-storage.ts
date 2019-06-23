@@ -7,3 +7,7 @@ export function getItemFromLocalStorage<T>(key: string): T {
   if(item !== undefined && item !== "") return JSON.parse(localStorage.getItem(key));
   else return null;
 }
+
+export function removeItemFromLocalStorage(key: string) {
+  localStorage.removeItem(key);
+}

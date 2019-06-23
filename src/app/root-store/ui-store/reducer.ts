@@ -4,8 +4,8 @@ import { UiActionTypes, SetLoggedUser, OpenBoard } from './actions';
 import { getItemFromLocalStorage } from 'src/app/services/local-storage';
 
 export const initialState: Ui = {
-  loggedUser: "user1",
-  isDashboardPage: true,
+  loggedUser: "",
+  isDashboardPage: false,
   boardId: ""
 }
 
@@ -23,6 +23,13 @@ function reducer(state = initialState, action: Action): Ui {
     }
     case UiActionTypes.NAVIGATE_TO_DASHBOARD: {
       return {...state, isDashboardPage: true}
+    }
+    case UiActionTypes.CLEAR_UI_STORE: {
+      return {
+        boardId: "",
+        isDashboardPage: false,
+        loggedUser: ""
+      }
     }
     default: {
       const ui: Ui = getItemFromLocalStorage('ui');

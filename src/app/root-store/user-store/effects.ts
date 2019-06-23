@@ -16,4 +16,7 @@ export class UserStoreEffects {
       map(users => new LoadUserSuccess(users))
     ))
   ));
+
+  @Effect()
+  
 }
