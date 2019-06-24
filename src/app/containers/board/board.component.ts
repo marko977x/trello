@@ -57,7 +57,7 @@ export class BoardComponent implements OnInit {
     let boardId: string = getItemFromLocalStorage<Ui>('ui').boardId;
     this.store$.dispatch(new AddList(boardId, {
       id: uuid.v4(),
-      boardId: boardId,
+      board: boardId,
       cards: [],
       title: listTitle
     }));

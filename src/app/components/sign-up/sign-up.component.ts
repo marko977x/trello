@@ -37,7 +37,6 @@ export class SignUpComponent implements OnInit {
       this.email.setErrors({'email': true});
     }
     else {
-      this.store$.dispatch(new SetLoggedUser(userId));
       this.router.navigate(['/dashboard']);
     }
   }

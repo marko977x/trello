@@ -1,6 +1,6 @@
 export interface List {
   id: string,
   title: string,
-  boardId: string,
+  board: string,
   cards: string[]
 }

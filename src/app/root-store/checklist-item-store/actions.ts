@@ -4,11 +4,14 @@ import { ChecklistItem } from 'src/app/models/checklist-item';
 export enum ChecklistItemActionTypes {
   LOAD_CHECKLIST_ITEMS = '[CHECKLIST_ITEM] Load Checklist Items',
   LOAD_CHECKLIST_ITEMS_SUCCESS = '[CHECKLIST_ITEM] Load Checklist Items Success',
-  LOAD_CHECKLIST_ITEMS_ERROR = '[CHECKLIST_ITEM] Load Checklist Items Error',
   TOGGLE_CHECKLIST_ITEM = '[CHECKLIST_ITEM] Toggle Checklist Item',
+  TOGGLE_CHECKLIST_ITEM_SUCESS = '[CHECKLIST_ITEM] Toggle Checklist Item Success',
   DELETE_CHECKLIST_ITEM = '[CHECKLIST_ITEM] Delete Checklist Item',
+  DELETE_CHECKLIST_ITEM_SUCCESS = '[CHECKLIST_ITEM] Delete Checklist Item Success',
   SAVE_CHECKLIST_ITEM_TEXT = '[CHECKLIST_ITEM] Save Checklist Item Text',
-  ADD_CHECKLIST_ITEM = '[CHECKLIST_ITEM] Add Checklist Item'
+  SAVE_CHECKLIST_ITEM_TEXT_SUCCESS = '[CHECKLIST_ITEM] Save Checklist Item Text Success',
+  ADD_CHECKLIST_ITEM = '[CHECKLIST_ITEM] Add Checklist Item',
+  ADD_CHECKLIST_ITEM_SUCCESS = '[CHECKLIST_ITEM] Add Checklist Item Success'
 }
 
 export class LoadChecklistItems implements Action {
@@ -20,13 +23,13 @@ export class LoadChecklistItemsSuccess implements Action {
   constructor(public checklistItems: ChecklistItem[]) {}
 }
 
-export class LoadChecklistItemsError implements Action {
-  readonly type = ChecklistItemActionTypes.LOAD_CHECKLIST_ITEMS_ERROR;
-  constructor(public error: any) {}
-}
-
 export class ToggleChecklistItem implements Action {
   readonly type = ChecklistItemActionTypes.TOGGLE_CHECKLIST_ITEM;
+  constructor(public id: string) {}
+}
+
+export class ToggleChecklistItemSuccess implements Action {
+  readonly type = ChecklistItemActionTypes.TOGGLE_CHECKLIST_ITEM_SUCESS;
   constructor(public id: string) {}
 }
 
@@ -35,12 +38,27 @@ export class DeleteChecklistItem implements Action {
   constructor(public checklistId: string, public itemId: string) {}
 }
 
+export class DeleteChecklistItemSuccess implements Action {
+  readonly type = ChecklistItemActionTypes.DELETE_CHECKLIST_ITEM_SUCCESS;
+  constructor(public checklistId: string, public itemId: string) {}
+}
+
 export class SaveChecklistItemText implements Action {
   readonly type = ChecklistItemActionTypes.SAVE_CHECKLIST_ITEM_TEXT;
   constructor(public itemId: string, public text: string) {}
 }
 
+export class SaveChecklistItemTextSuccess implements Action {
+  readonly type = ChecklistItemActionTypes.SAVE_CHECKLIST_ITEM_TEXT_SUCCESS;
+  constructor(public itemId: string, public text: string) {}
+}
+
 export class AddChecklistItem implements Action {
   readonly type = ChecklistItemActionTypes.ADD_CHECKLIST_ITEM;
+  constructor(public checklistId: string, public item: ChecklistItem) {}
+}
+
+export class AddChecklistItemSuccess implements Action {
+  readonly type = ChecklistItemActionTypes.ADD_CHECKLIST_ITEM_SUCCESS;
   constructor(public checklistId: string, public item: ChecklistItem) {}
 }

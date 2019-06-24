@@ -4,8 +4,8 @@ import { User } from 'src/app/models/user';
 export enum UserActionTypes {
   LOAD_USERS = '[USER] Load Users',
   LOAD_USERS_SUCCESS = '[USER] Load Users Success',
-  LOAD_USERS_ERROR = '[USER] Load Users Error',
-  SIGN_UP = '[User] Sign Up'
+  SIGN_UP = '[User] Sign Up',
+  SIGN_UP_SUCCESS = '[User] Sign Up Success'
 }
 
 export class LoadUsers implements Action {
@@ -17,12 +17,12 @@ export class LoadUserSuccess implements Action {
   constructor(public users: User[]) {}
 }
 
-export class LoadUsersError implements Action {
-  readonly type = UserActionTypes.LOAD_USERS_ERROR;
-  constructor(public error: any) {}
-}
-
 export class SignUp implements Action {
   readonly type = UserActionTypes.SIGN_UP;
+  constructor(public user: User) {}
+}
+
+export class SignUpSuccess implements Action {
+  readonly type = UserActionTypes.SIGN_UP_SUCCESS;
   constructor(public user: User) {}
 }

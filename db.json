@@ -3,117 +3,94 @@
     {
       "id": "board1",
       "title": "Board Title",
-      "lists": ["1", "2"],
-      "userId": "User Id",
+      "lists": [
+        "dfe2ef6e-9d24-47e4-8f5a-8752cc590fd5",
+        "22c567d3-1004-4e3f-a73f-ce3b4fd4e462"
+      ],
+      "user": "User Id",
       "backgroundIndex": 3
+    },
+    {
+      "id": "bb75e5ab-e327-452a-b110-ba4dfb5ec598",
+      "backgroundIndex": 8,
+      "lists": [
+        "ea6c25a0-7c40-45eb-a9c9-fca8b9c80503"
+      ],
+      "title": "New Board",
+      "user": "user1"
     }
   ],
   "lists": [
     {
-      "id": "1",
-      "title": "title 1",
-      "boardId": "board1",
-      "cards": ["card1", "card2"]
+      "id": "dfe2ef6e-9d24-47e4-8f5a-8752cc590fd5",
+      "board": "board1",
+      "cards": [
+        "b31d089d-bde9-4af0-8a30-eb25eaa9682c"
+      ],
+      "title": "List One"
     },
     {
-      "id": "2",
-      "title": "title 2",
-      "boardId": "board1",
-      "cards": ["card3", "card4"]
+      "id": "22c567d3-1004-4e3f-a73f-ce3b4fd4e462",
+      "board": "board1",
+      "cards": [],
+      "title": "List Two"
+    },
+    {
+      "id": "ea6c25a0-7c40-45eb-a9c9-fca8b9c80503",
+      "board": "bb75e5ab-e327-452a-b110-ba4dfb5ec598",
+      "cards": [
+        "1223e30e-0bcc-4cbb-ad4f-dfdcc6aa5b76"
+      ],
+      "title": "New List"
     }
   ],
   "cards": [
     {
-      "id": "card1",
-      "title": "Card Title 1",
-      "boardId": "board1",
-      "listId": "1",
-      "checklists": ["checklist1"],
-      "description": "Checklist 1 Description"
+      "id": "b31d089d-bde9-4af0-8a30-eb25eaa9682c",
+      "board": "board1",
+      "checklists": [
+        "94700e49-0b5d-471c-b26d-f43d7afb9f6c"
+      ],
+      "description": "More detailes description",
+      "list": "dfe2ef6e-9d24-47e4-8f5a-8752cc590fd5",
+      "title": "card dsa dsa"
     },
     {
-      "id": "card2",
-      "title": "Card Title 2",
-      "boardId": "board1",
-      "listId": "1",
-      "checklists": ["checklist2"],
-      "description": "Checklist 2 Description"
-    },
-    {
-      "id": "card3",
-      "title": "Card Title 3",
-      "boardId": "board1",
-      "listId": "2",
-      "checklists": ["checklist3"],
-      "description": "Checklist 3 Description"
-    },
-    {
-      "id": "card4",
-      "title": "Card Title 4",
-      "boardId": "board1",
-      "listId": "2",
-      "checklists": ["checklist4"],
-      "description": "Checklist 4 Description"
+      "id": "1223e30e-0bcc-4cbb-ad4f-dfdcc6aa5b76",
+      "board": "bb75e5ab-e327-452a-b110-ba4dfb5ec598",
+      "checklists": [],
+      "description": "",
+      "list": "ea6c25a0-7c40-45eb-a9c9-fca8b9c80503",
+      "title": "New Card"
     }
   ],
   "checklists": [
     {
-      "id": "checklist1",
-      "title": "checklist 1",
-      "items": ["item1", "item2"]
+      "id": "fb2e1d34-131a-482d-94d3-1a759483004f",
+      "title": "Checklist One",
+      "items": []
     },
     {
-      "id": "checklist2",
-      "title": "checklist 1",
-      "items": ["item3", "item4"]
-    },
-    {
-      "id": "checklist3",
-      "title": "checklist 1",
-      "items": ["item5"]
-    },
-    {
-      "id": "checklist4",
-      "title": "checklist 1",
-      "items": ["item6"]
+      "id": "94700e49-0b5d-471c-b26d-f43d7afb9f6c",
+      "title": "asdf",
+      "items": [
+        "dummy",
+        "dummy2"
+      ]
     }
   ],
   "checklistItems": [
     {
-      "id": "item1",
-      "text": "Item one text",
+      "id": "dummy",
+      "text": "dummy",
       "isChecked": false,
-      "checklist": "checklist1"
+      "checklist": "dummy"
     },
     {
-      "id": "item2",
-      "text": "Item two text",
+      "id": "dummy2",
+      "text": "dummy2",
       "isChecked": false,
-      "checklist": "checklist1"
-    },
-    {
-      "id": "item3",
-      "text": "Item three text",
-      "isChecked": true,
-      "checklist": "checklist2"
-    },
-    {
-      "id": "item4",
-      "text": "Item four text",
-      "isChecked": false,
-      "checklist": "checklist2"
-    },
-    {
-      "id": "item5",
-      "text": "Item five text",
-      "isChecked": false,
-      "checklist": "checklist3"
-    },
-    {
-      "id": "item6",
-      "text": "Item six text",
-      "isChecked": false,
-      "checklist": "checklist4"
+      "checklist": "dummy2"
     }
   ],
   "users": [
@@ -122,7 +99,24 @@
       "email": "marko977x@gmail.com",
       "password": "marko977x",
       "username": "marko977x",
-      "boards": ["board1"]
+      "boards": [
+        "board1",
+        "bb75e5ab-e327-452a-b110-ba4dfb5ec598"
+      ]
+    },
+    {
+      "boards": [],
+      "email": "markoas@gmail.com",
+      "id": "a752e8b3-8bee-48b8-8cee-6a784a6b08ac",
+      "password": "marko",
+      "username": "marko"
+    },
+    {
+      "boards": [],
+      "email": "mmm@gmail.com",
+      "id": "555d6248-1e52-4ff8-aa18-03b194b50328",
+      "password": "mmm",
+      "username": "mmm"
     }
   ]
 }

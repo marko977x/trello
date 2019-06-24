@@ -1,29 +1,19 @@
 import { initialState, CardState, CardAdapter } from "./state";
 import { Action } from '@ngrx/store';
-import { CardActionTypes, LoadCardsSuccess, LoadCardsError, SaveDescription, DeleteCard, AddCard, ChangeCardTitle } from './actions';
-import { ChecklistActionTypes, DeleteChecklist, AddChecklist } from '../checklist-store/actions';
+import { CardActionTypes, LoadCardsSuccess, SaveDescription, DeleteCardSuccess, AddCardSuccess, ChangeCardTitleError, ChangeCardTitle } from './actions';
+import { ChecklistActionTypes, AddChecklistSuccess, DeleteChecklistSuccess } from '../checklist-store/actions';
 import { Update } from '@ngrx/entity';
 import { Card } from 'src/app/models/card';
 
 function reducer(state = initialState, action: Action): CardState {
   switch(action.type) {
-    case CardActionTypes.LOAD_CARDS: {
-      return {
-        ...state, loaded: false, error: null 
-      }
-    }
     case CardActionTypes.LOAD_CARDS_SUCCESS: {
       return CardAdapter.addAll((action as LoadCardsSuccess).cards, {
         ...state, loaded: true, error: null
       })
     }
-    case CardActionTypes.LOAD_CARDS_ERROR: {
-      return {
-        ...state, loaded: false, error: (action as LoadCardsError).error
-      }
-    }
-    case ChecklistActionTypes.DELETE_CHECKLIST: {
-      const {cardId, checklistId} = (action as DeleteChecklist);
+    case ChecklistActionTypes.DELETE_CHECKLIST_SUCCESS: {
+      const {cardId, checklistId} = (action as DeleteChecklistSuccess);
       const checklists: string[] = state.entities[cardId].checklists.filter(item => item !== checklistId);
       const update: Update<Card> = {
         id: cardId,
@@ -40,14 +30,14 @@ function reducer(state = initialState, action: Action): CardState {
       }
       return CardAdapter.updateOne(update, state);
     }
-    case CardActionTypes.DELETE_CARD: {
-      return CardAdapter.removeOne((action as DeleteCard).cardId, state);
+    case CardActionTypes.DELETE_CARD_SUCCESS: {
+      return CardAdapter.removeOne((action as DeleteCardSuccess).cardId, state);
     }
-    case CardActionTypes.ADD_CARD: {
-      return CardAdapter.addOne((action as AddCard).card, state);
+    case CardActionTypes.ADD_CARD_SUCCESS: {
+      return CardAdapter.addOne((action as AddCardSuccess).card, state);
     }
-    case ChecklistActionTypes.ADD_CHECKLIST: {
-      const {cardId, checklist} = (action as AddChecklist);
+    case ChecklistActionTypes.ADD_CHECKLIST_SUCCESS: {
+      const {cardId, checklist} = (action as AddChecklistSuccess);
       return {
         ...state,
         entities: {

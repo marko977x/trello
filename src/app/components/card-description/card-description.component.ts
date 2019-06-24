@@ -63,7 +63,6 @@ export class CardDescriptionComponent implements OnInit {
   }
 
   getDescriptionValue() {
-    console.log("call");
     return this.card.description === "" ? 
       this.defaultDescriptionValue : this.card.description;
   }

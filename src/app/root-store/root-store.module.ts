@@ -22,7 +22,7 @@ import { UiStoreModule } from './ui-store/ui-store.module';
     ChecklistItemStoreModule,
     UiStoreModule,
     StoreModule.forRoot({}),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([])
   ]
 })
 export class RootStoreModule { }

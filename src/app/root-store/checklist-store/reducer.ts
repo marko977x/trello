@@ -1,6 +1,6 @@
 import { initialState, ChecklistState, ChecklistAdapter } from "./state";
 import { Action } from '@ngrx/store';
-import { ChecklistActionTypes, LoadChecklistsSuccess, LoadChecklistsError, DeleteChecklist, SwapItems, AddChecklist } from './actions';
+import { ChecklistActionTypes, LoadChecklistsSuccess, DeleteChecklistSuccess, AddChecklistSuccess, SwapItems } from './actions';
 import { ChecklistItemActionTypes, DeleteChecklistItem, AddChecklistItem } from '../checklist-item-store/actions';
 import { Update } from '@ngrx/entity';
 import { Checklist } from 'src/app/models/checklist';
@@ -8,20 +8,10 @@ import { moveItemInArray } from '@angular/cdk/drag-drop';
 
 function reducer(state = initialState, action: Action): ChecklistState {
   switch(action.type) {
-    case ChecklistActionTypes.LOAD_CHECKLISTS: {
-      return {
-        ...state, loaded: false, error: null 
-      }
-    }
     case ChecklistActionTypes.LOAD_CHECKLISTS_SUCCESS: {
       return ChecklistAdapter.addAll((action as LoadChecklistsSuccess).checklists, {
         ...state, loaded: true, error: null
       })
-    }
-    case ChecklistActionTypes.LOAD_CHECKLISTS_ERROR: {
-      return {
-        ...state, loaded: false, error: (action as LoadChecklistsError).error
-      }
     }
     case ChecklistItemActionTypes.DELETE_CHECKLIST_ITEM: {
       const {checklistId, itemId} = (action as DeleteChecklistItem);
@@ -33,7 +23,11 @@ function reducer(state = initialState, action: Action): ChecklistState {
       return ChecklistAdapter.updateOne(update, state);
     }
     case ChecklistActionTypes.DELETE_CHECKLIST: {
-      return ChecklistAdapter.removeOne((action as DeleteChecklist).checklistId, state);
+      console.log("elete");
+      return state;
+    }
+    case ChecklistActionTypes.DELETE_CHECKLIST_SUCCESS: {
+      return ChecklistAdapter.removeOne((action as DeleteChecklistSuccess).checklistId, state);
     }
     case ChecklistActionTypes.SWAP_ITEMS: {
       const {checklistId, previousIndex, currentIndex} = (action as SwapItems);
@@ -58,8 +52,8 @@ function reducer(state = initialState, action: Action): ChecklistState {
       }
       return ChecklistAdapter.updateOne(update, state);
     }
-    case ChecklistActionTypes.ADD_CHECKLIST: {
-      return ChecklistAdapter.addOne((action as AddChecklist).checklist, state);
+    case ChecklistActionTypes.ADD_CHECKLIST_SUCCESS: {
+      return ChecklistAdapter.addOne((action as AddChecklistSuccess).checklist, state);
     }
     default: return state;
   }

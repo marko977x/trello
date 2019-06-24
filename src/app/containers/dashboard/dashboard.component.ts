@@ -58,7 +58,7 @@ export class DashboardComponent implements OnInit {
         backgroundIndex: parseInt((Math.random() * IMAGES_PATHS.length).toFixed(0)),
         lists: [],
         title: boardTitle,
-        userId
+        user: userId
       }
     ));
   }

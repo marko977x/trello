@@ -45,7 +45,7 @@ export class CardDetailsSidebarComponent implements OnInit {
 
   deleteCard() {
     this.cardDetailsDialog.close();
-    this.store$.dispatch(new DeleteCard(this.card.listId, this.card.id));
+    this.store$.dispatch(new DeleteCard(this.card.list, this.card.id));
   }
 
   openNewChecklistModal() {

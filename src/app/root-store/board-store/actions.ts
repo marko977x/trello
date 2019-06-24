@@ -4,8 +4,8 @@ import { Board } from 'src/app/models/board';
 export enum BoardActionTypes {
   LOAD_BOARDS = '[BOARD] Load Boards',
   LOAD_BOARDS_SUCCESS = '[BOARD] Load Boards Success',
-  LOAD_BOARDS_ERROR = '[BOARD] Load Boards Error',
-  ADD_BOARD = '[BOARD] Add Board'
+  ADD_BOARD = '[BOARD] Add Board',
+  ADD_BOARD_SUCCESS = '[BOARD] Add Board Success'
 }
 
 export class LoadBoards implements Action {
@@ -17,12 +17,12 @@ export class LoadBoardsSuccess implements Action {
   constructor(public boards: Board[]) {}
 }
 
-export class LoadBoardsError implements Action {
-  readonly type = BoardActionTypes.LOAD_BOARDS_ERROR;
-  constructor(public error: any) {}
-}
-
 export class AddBoard implements Action {
   readonly type = BoardActionTypes.ADD_BOARD;
+  constructor(public userId: string, public board: Board) {}
+}
+
+export class AddBoardSuccess implements Action {
+  readonly type = BoardActionTypes.ADD_BOARD_SUCCESS;
   constructor(public userId: string, public board: Board) {}
 }

@@ -41,7 +41,7 @@ export class ListComponent implements OnInit {
     this.list$ = this.store$.select(selectListById(this.listId));
     this.isEditableFormVisible = false;
     this.list$.subscribe(list => {
-      if(list) this.boardId = list.boardId;
+      if(list) this.boardId = list.board;
     });
   }
 
@@ -69,10 +69,10 @@ export class ListComponent implements OnInit {
   addNewCard(newCardTitle: string) {
     this.store$.dispatch(new AddCard(this.listId, {
       id: uuid.v4(),
-      boardId: this.boardId,
+      board: this.boardId,
       checklists: [],
       description: "",
-      listId: this.listId,
+      list: this.listId,
       title: newCardTitle
     }));
 
