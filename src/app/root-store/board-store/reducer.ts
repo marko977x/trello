@@ -8,9 +8,7 @@ import { Update } from '@ngrx/entity';
 function reducer(state = initialState, action: Action): BoardState {
   switch(action.type) {
     case BoardActionTypes.LOAD_BOARDS_SUCCESS: {
-      return BoardAdapter.addAll((action as LoadBoardsSuccess).boards, {
-        ...state, loaded: true, error: null
-      });
+      return BoardAdapter.addAll((action as LoadBoardsSuccess).boards, state);
     }
     case BoardActionTypes.ADD_BOARD_SUCCESS: {
       return BoardAdapter.addOne((action as AddBoard).board, state);
@@ -31,7 +29,6 @@ function reducer(state = initialState, action: Action): BoardState {
     }
     case ListActionTypes.DELETE_LIST_SUCCESS: {
       const {boardId, listId} = (action as DeleteListSuccess);
-      console.log(listId);
       let lists: string[] = state.entities[boardId].lists.filter(list => list !== listId);
       const update: Update<Board> = {
         id: boardId,

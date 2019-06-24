@@ -5,14 +5,8 @@ const adapter: EntityAdapter<List> = createEntityAdapter({
   selectId: model => model.id
 });
 
-export interface ListState extends EntityState<List> {
-  loaded: boolean;
-  error: any;
-};
+export interface ListState extends EntityState<List> {};
 
-export const initialState: ListState = adapter.getInitialState({
-  loaded: false,
-  error: null
-});
+export const initialState: ListState = adapter.getInitialState({});
 
 export { adapter as ListAdapter }

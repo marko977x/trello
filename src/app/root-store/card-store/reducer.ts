@@ -9,9 +9,7 @@ import { ListActionTypes, DeleteListSuccess } from '../list-store/actions';
 function reducer(state = initialState, action: Action): CardState {
   switch(action.type) {
     case CardActionTypes.LOAD_CARDS_SUCCESS: {
-      return CardAdapter.addAll((action as LoadCardsSuccess).cards, {
-        ...state, loaded: true, error: null
-      })
+      return CardAdapter.addAll((action as LoadCardsSuccess).cards, state)
     }
     case ChecklistActionTypes.DELETE_CHECKLIST_SUCCESS: {
       const {cardId, checklistId} = (action as DeleteChecklistSuccess);
@@ -42,16 +40,11 @@ function reducer(state = initialState, action: Action): CardState {
     }
     case ChecklistActionTypes.ADD_CHECKLIST_SUCCESS: {
       const {cardId, checklist} = (action as AddChecklistSuccess);
-      return {
-        ...state,
-        entities: {
-          ...state.entities,
-          [cardId]: {
-            ...state.entities[cardId],
-            checklists: [...state.entities[cardId].checklists, checklist.id]
-          }
-        }
+      const update: Update<Card> = {
+        id: cardId,
+        changes: {checklists: [...state.entities[cardId].checklists, checklist.id]}
       }
+      return CardAdapter.updateOne(update, state);
     }
     case CardActionTypes.CHANGE_CARD_TITLE: {
       const {cardId, title} = (action as ChangeCardTitle);

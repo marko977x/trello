@@ -11,7 +11,6 @@ import { AddChecklist } from 'src/app/root-store/checklist-store/actions';
 import * as uuid from "uuid";
 
 const CHECKBOX_ICON: string = 'check-box-icon';
-const MOVE_ICON: string = 'move-icon';
 const DELETE_ICON: string = 'delete-icon';
 
 @Component({
@@ -21,7 +20,6 @@ const DELETE_ICON: string = 'delete-icon';
 })
 export class CardDetailsSidebarComponent implements OnInit {
   checkboxIcon: string = CHECKBOX_ICON;
-  moveIcon: string = MOVE_ICON;
   deleteIcon: string = DELETE_ICON;
   card: Card;
 
@@ -35,7 +33,6 @@ export class CardDetailsSidebarComponent implements OnInit {
 
   registerIcons() {
     this.iconRegistry.registerIcon(CHECKBOX_ICON);
-    this.iconRegistry.registerIcon(MOVE_ICON);
     this.iconRegistry.registerIcon(DELETE_ICON);
   }
 

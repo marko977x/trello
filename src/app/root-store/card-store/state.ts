@@ -5,14 +5,8 @@ const adapter: EntityAdapter<Card> = createEntityAdapter({
   selectId: model => model.id
 });
 
-export interface CardState extends EntityState<Card> {
-  loaded: boolean;
-  error: any;
-};
+export interface CardState extends EntityState<Card> {};
 
-export const initialState: CardState = adapter.getInitialState({
-  loaded: false,
-  error: null
-});
+export const initialState: CardState = adapter.getInitialState({});
 
 export { adapter as CardAdapter }

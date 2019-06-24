@@ -9,9 +9,7 @@ import { ListActionTypes, DeleteListSuccess } from '../list-store/actions';
 function reducer(state = initialState, action: Action): ChecklistItemState {
   switch(action.type) {
     case ChecklistItemActionTypes.LOAD_CHECKLIST_ITEMS_SUCCESS: {
-      return ChecklistItemAdapter.addAll((action as LoadChecklistItemsSuccess).checklistItems, {
-        ...state, loaded: true, error: null
-      })
+      return ChecklistItemAdapter.addAll((action as LoadChecklistItemsSuccess).checklistItems, state)
     }
     case ChecklistItemActionTypes.TOGGLE_CHECKLIST_ITEM_SUCCESS: {
       const id: string = (action as ToggleChecklistItemSuccess).id;

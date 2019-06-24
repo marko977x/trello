@@ -5,14 +5,8 @@ const adapter: EntityAdapter<Checklist> = createEntityAdapter({
   selectId: model => model.id
 });
 
-export interface ChecklistState extends EntityState<Checklist> {
-  loaded: boolean;
-  error: any;
-};
+export interface ChecklistState extends EntityState<Checklist> {};
 
-export const initialState: ChecklistState = adapter.getInitialState({
-  loaded: false,
-  error: null
-});
+export const initialState: ChecklistState = adapter.getInitialState({});
 
 export { adapter as ChecklistAdapter }

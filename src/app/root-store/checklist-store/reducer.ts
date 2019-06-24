@@ -10,9 +10,7 @@ import { ListActionTypes, DeleteListSuccess } from '../list-store/actions';
 function reducer(state = initialState, action: Action): ChecklistState {
   switch(action.type) {
     case ChecklistActionTypes.LOAD_CHECKLISTS_SUCCESS: {
-      return ChecklistAdapter.addAll((action as LoadChecklistsSuccess).checklists, {
-        ...state, loaded: true, error: null
-      })
+      return ChecklistAdapter.addAll((action as LoadChecklistsSuccess).checklists, state)
     }
     case ChecklistItemActionTypes.DELETE_CHECKLIST_ITEM_SUCCESS: {
       const {checklistId, itemId} = (action as DeleteChecklistItemSuccess);
@@ -42,10 +40,9 @@ function reducer(state = initialState, action: Action): ChecklistState {
     }
     case ChecklistItemActionTypes.ADD_CHECKLIST_ITEM: {
       const {checklistId, item} = (action as AddChecklistItem);
-      const itemId: string = item.id;
       const update: Update<Checklist> = {
         id: checklistId,
-        changes: {items: [...state.entities[checklistId].items, itemId]}
+        changes: {items: [...state.entities[checklistId].items, item.id]}
       }
       return ChecklistAdapter.updateOne(update, state);
     }

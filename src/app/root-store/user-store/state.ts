@@ -5,14 +5,8 @@ const adapter: EntityAdapter<User> = createEntityAdapter({
   selectId: model => model.id
 });
 
-export interface UserState extends EntityState<User> {
-  loaded: boolean,
-  error: any
-};
+export interface UserState extends EntityState<User> {};
 
-export const initialState: UserState = adapter.getInitialState({
-  loaded: false,
-  error: null
-});
+export const initialState: UserState = adapter.getInitialState({});
 
 export { adapter as UserAdapter };

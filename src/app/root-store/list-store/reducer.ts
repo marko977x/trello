@@ -8,9 +8,7 @@ import { Update } from '@ngrx/entity';
 function reducer(state = initialState, action: Action): ListState {
   switch(action.type) {
     case ListActionTypes.LOAD_LISTS_SUCCESS: {
-      return ListAdapter.addAll((action as LoadListsSuccess).lists, {
-        ...state, loaded: true, error: null
-      })
+      return ListAdapter.addAll((action as LoadListsSuccess).lists, state)
     }
     case CardActionTypes.DELETE_CARD_SUCCESS: {
       const {cardId, listId} = (action as DeleteCardSuccess);
@@ -23,10 +21,9 @@ function reducer(state = initialState, action: Action): ListState {
     }
     case CardActionTypes.ADD_CARD: {
       const {card, listId} = (action as AddCard);
-      const cardId: string = card.id;
       const update: Update<List> = {
         id: listId,
-        changes: {cards: [...state.entities[listId].cards, cardId]}
+        changes: {cards: [...state.entities[listId].cards, card.id]}
       }
       return ListAdapter.updateOne(update, state);
     }
