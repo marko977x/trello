@@ -5,9 +5,7 @@ import { RootState } from 'src/app/root-store/root-state';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { isEmpty } from 'src/app/services/object-checker';
-import { SetLoggedUser } from 'src/app/root-store/ui-store/actions';
-import { SignUp } from 'src/app/root-store/user-store/actions';
-import { DASHBOARD_URL } from 'src/app/app-routing.module';
+import { DASHBOARD_URL } from 'src/app/routes-constants';
 
 @Component({
   selector: 'app-sign-up',

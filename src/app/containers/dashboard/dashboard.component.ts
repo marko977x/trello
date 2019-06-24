@@ -13,7 +13,7 @@ import { AddBoard } from 'src/app/root-store/board-store/actions';
 import { getItemFromLocalStorage } from 'src/app/services/local-storage';
 import * as uuid from "uuid";
 import { Router } from '@angular/router';
-import { BOARD_URL } from 'src/app/app-routing.module';
+import { BOARD_URL } from 'src/app/routes-constants';
 
 @Component({
   selector: 'app-dashboard',

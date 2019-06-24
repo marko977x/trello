@@ -3,11 +3,12 @@ import { IconRegistryService, ACCOUNT_ICON, HOME_ICON } from 'src/app/services/i
 import { RootState } from 'src/app/root-store/root-state';
 import { Store } from '@ngrx/store';
 import { Ui } from 'src/app/models/ui';
-import { DASHBOARD_URL, HOME_URL } from 'src/app/app-routing.module';
 import { isEmpty } from 'src/app/services/object-checker';
 import { Router } from '@angular/router';
 import { NavigateToDashboard, ClearUiStore } from 'src/app/root-store/ui-store/actions';
-import { removeItemFromLocalStorage } from 'src/app/services/local-storage';
+import { removeItemFromLocalStorage, setItemToLocalStorage } from 'src/app/services/local-storage';
+import { DASHBOARD_URL, HOME_URL } from 'src/app/routes-constants';
+import { initialState } from 'src/app/root-store/ui-store/reducer';
 
 @Component({
   selector: 'app-header',
@@ -58,7 +59,7 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.store$.dispatch(new ClearUiStore());
-    removeItemFromLocalStorage('ui');
+    setItemToLocalStorage<Ui>('ui', initialState);
     this.router.navigate(['/' + HOME_URL]);
   }
 

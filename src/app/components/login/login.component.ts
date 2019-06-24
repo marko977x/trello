@@ -9,7 +9,7 @@ import { isEmpty } from 'src/app/services/object-checker';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { SetLoggedUser } from 'src/app/root-store/ui-store/actions';
-import { DASHBOARD_URL } from 'src/app/app-routing.module';
+import { DASHBOARD_URL } from 'src/app/routes-constants';
 
 @Component({
   selector: 'app-login',
