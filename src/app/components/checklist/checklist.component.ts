@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IconRegistryService } from 'src/app/services/icon-registry.service';
+import { IconRegistryService, CLOSE_ICON, CHECKBOX_ICON } from 'src/app/services/icon-registry.service';
 import { Store } from '@ngrx/store';
 import { RootState } from 'src/app/root-store/root-state';
 import { Observable } from 'rxjs';
@@ -11,9 +11,6 @@ import { DeleteChecklist, SwapItems } from 'src/app/root-store/checklist-store/a
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { AddChecklistItem } from 'src/app/root-store/checklist-item-store/actions';
 import * as uuid from "uuid";
-
-const CHECKBOX_ICON: string = 'check-box-icon';
-const CLOSE_ICON: string = "close-icon";
 
 @Component({
   selector: 'app-checklist',

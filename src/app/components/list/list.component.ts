@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
@@ -6,7 +6,7 @@ import { ListState } from 'src/app/root-store/list-store/state';
 import { selectListById } from 'src/app/root-store/list-store/selectors';
 import { List } from 'src/app/models/list';
 import { DeleteList } from 'src/app/root-store/list-store/actions';
-import { IconRegistryService } from 'src/app/services/icon-registry.service';
+import { IconRegistryService, PLUS_ICON, DELETE_ICON } from 'src/app/services/icon-registry.service';
 import { AddCard } from 'src/app/root-store/card-store/actions';
 import * as uuid from "uuid";
 
@@ -19,6 +19,8 @@ export class ListComponent implements OnInit {
   list$: Observable<List>;
   isEditableFormVisible: boolean;
   boardId: string;
+  plusIcon: string = PLUS_ICON;
+  deleteIcon: string = DELETE_ICON;
 
   @Input()
   listId: string;
@@ -32,9 +34,8 @@ export class ListComponent implements OnInit {
   }
 
   registerIcons() {
-    this.iconRegistry.registerIcon('plus-icon');
-    this.iconRegistry.registerIcon('close-icon');
-    this.iconRegistry.registerIcon('delete-icon');
+    this.iconRegistry.registerIcon(PLUS_ICON);
+    this.iconRegistry.registerIcon(DELETE_ICON);
   }
 
   ngOnInit() {

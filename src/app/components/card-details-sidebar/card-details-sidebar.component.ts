@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IconRegistryService } from 'src/app/services/icon-registry.service';
+import { IconRegistryService, CHECKBOX_ICON, DELETE_ICON } from 'src/app/services/icon-registry.service';
 import { MatDialogRef, MatDialog } from '@angular/material';
 import { CardDetailsWindowComponent } from '../card-details-window/card-details-window.component';
 import { RootState } from 'src/app/root-store/root-state';
@@ -9,9 +9,6 @@ import { Card } from 'src/app/models/card';
 import { SimpleModalComponent } from '../simple-modal/simple-modal.component';
 import { AddChecklist } from 'src/app/root-store/checklist-store/actions';
 import * as uuid from "uuid";
-
-const CHECKBOX_ICON: string = 'check-box-icon';
-const DELETE_ICON: string = 'delete-icon';
 
 @Component({
   selector: 'app-card-details-sidebar',

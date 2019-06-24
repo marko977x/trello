@@ -1,7 +1,7 @@
 <div class="card-window" *ngIf="card$ | async as card">
-  <div class="close-icon"><mat-icon svgIcon="close-icon" (click)="closeDialog()"></mat-icon></div>
+  <div class="close-icon"><mat-icon svgIcon="{{closeIcon}}" (click)="closeDialog()"></mat-icon></div>
   <div class="window-header">
-    <div class="card-icon"><mat-icon svgIcon="card-icon"></mat-icon></div>
+    <div class="card-icon"><mat-icon svgIcon="{{cardIcon}}"></mat-icon></div>
     <div class="card-title" (click)="showEditableForm()" *ngIf="!isEditFieldVisible">{{card.title}}</div>
     <app-editable-form
       *ngIf="isEditFieldVisible"

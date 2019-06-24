@@ -1,7 +1,7 @@
 <mat-card class="list-wrapper" *ngIf="list$ | async as list">
   <div class="list-header">
     <label class="list-header-label">{{list.title}}</label>
-    <mat-icon class="delete-icon" svgIcon="delete-icon" (click)="deleteList(list.id)"></mat-icon>
+    <mat-icon class="delete-icon" svgIcon="{{deleteIcon}}" (click)="deleteList(list.id)"></mat-icon>
   </div>
   <div 
       cdkDropList
@@ -17,7 +17,7 @@
   </div>
   <mat-card-actions class="list-actions">
     <button class="list-action-button" mat-button (click)="showEditableForm()" *ngIf="!isEditableFormVisible">
-      <mat-icon class="plus-icon" svgIcon="plus-icon" aria-hidden="false"></mat-icon> Add new card
+      <mat-icon class="plus-icon" svgIcon="{{plusIcon}}" aria-hidden="false"></mat-icon> Add new card
     </button>
     <app-editable-form
       *ngIf="isEditableFormVisible"

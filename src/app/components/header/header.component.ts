@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { IconRegistryService } from 'src/app/services/icon-registry.service';
+import { IconRegistryService, ACCOUNT_ICON, HOME_ICON } from 'src/app/services/icon-registry.service';
 import { RootState } from 'src/app/root-store/root-state';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { Board } from 'src/app/models/board';
-import { selectBoardById } from 'src/app/root-store/board-store/selectors';
 import { Ui } from 'src/app/models/ui';
-import { DASHBOARD_URL } from 'src/app/app-routing.module';
+import { DASHBOARD_URL, HOME_URL } from 'src/app/app-routing.module';
 import { isEmpty } from 'src/app/services/object-checker';
-import { RouterLink, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { NavigateToDashboard, ClearUiStore } from 'src/app/root-store/ui-store/actions';
 import { removeItemFromLocalStorage } from 'src/app/services/local-storage';
 
@@ -20,8 +17,9 @@ import { removeItemFromLocalStorage } from 'src/app/services/local-storage';
 export class HeaderComponent implements OnInit {
   ui: Ui;
   dashboardDefaultTitle: string = "Welcome to Trello";
-  dashboardUrl: string = DASHBOARD_URL;
   dashboardTitle: string;
+  homeIcon: string = HOME_ICON;
+  accountIcon: string = ACCOUNT_ICON;
 
   constructor(
     private iconRegistry: IconRegistryService,
@@ -31,8 +29,8 @@ export class HeaderComponent implements OnInit {
   }
 
   registerIcons() {
-    this.iconRegistry.registerIcon('account-icon');
-    this.iconRegistry.registerIcon('home-icon');
+    this.iconRegistry.registerIcon(ACCOUNT_ICON);
+    this.iconRegistry.registerIcon(HOME_ICON);
   }
 
   ngOnInit() {
@@ -54,14 +52,14 @@ export class HeaderComponent implements OnInit {
   }
 
   navigateToDashboard() {
-    this.router.navigate(['/' + this.dashboardUrl]);
+    this.router.navigate(['/' + DASHBOARD_URL]);
     this.store$.dispatch(new NavigateToDashboard());
   }
 
   logout() {
     this.store$.dispatch(new ClearUiStore());
     removeItemFromLocalStorage('ui');
-    this.router.navigate(['/home']);
+    this.router.navigate(['/' + HOME_URL]);
   }
 
 }

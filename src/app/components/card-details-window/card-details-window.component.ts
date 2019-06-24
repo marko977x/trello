@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { IconRegistryService } from 'src/app/services/icon-registry.service';
+import { IconRegistryService, CLOSE_ICON, CARD_ICON } from 'src/app/services/icon-registry.service';
 import { Observable } from 'rxjs';
 import { Card } from 'src/app/models/card';
 import { RootState } from 'src/app/root-store/root-state';
 import { Store } from '@ngrx/store';
-import { selectCardById } from 'src/app/root-store/card-store/selectors';
 import { MatDialogRef } from '@angular/material';
 import { ChangeCardTitle } from 'src/app/root-store/card-store/actions';
 
@@ -16,6 +15,8 @@ import { ChangeCardTitle } from 'src/app/root-store/card-store/actions';
 export class CardDetailsWindowComponent implements OnInit {
   card$: Observable<Card>;
   isEditFieldVisible: boolean;
+  closeIcon: string = CLOSE_ICON;
+  cardIcon: string = CARD_ICON;
 
   constructor(
     private iconRegistry: IconRegistryService,
@@ -25,8 +26,8 @@ export class CardDetailsWindowComponent implements OnInit {
   }
 
   registerIcons() {
-    this.iconRegistry.registerIcon('close-icon');
-    this.iconRegistry.registerIcon('card-icon');
+    this.iconRegistry.registerIcon(CLOSE_ICON);
+    this.iconRegistry.registerIcon(CARD_ICON);
   }
 
   ngOnInit() {

@@ -1,12 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IconRegistryService } from 'src/app/services/icon-registry.service';
+import { IconRegistryService, DESCRIPTION_ICON, CLOSE_ICON } from 'src/app/services/icon-registry.service';
 import { Card } from 'src/app/models/card';
 import { Store } from '@ngrx/store';
 import { RootState } from 'src/app/root-store/root-state';
 import { SaveDescription } from 'src/app/root-store/card-store/actions';
-
-const CLOSE_ICON: string = 'close-icon';
-const DESCRIPTION_ICON: string = 'description-icon';
 
 @Component({
   selector: 'app-card-description',
@@ -29,8 +26,8 @@ export class CardDescriptionComponent implements OnInit {
   }
 
   registerIcons() {
-    this.iconRegistry.registerIcon('description-icon');
-    this.iconRegistry.registerIcon('close-icon');
+    this.iconRegistry.registerIcon(DESCRIPTION_ICON);
+    this.iconRegistry.registerIcon(CLOSE_ICON);
   }
 
   ngOnInit() {

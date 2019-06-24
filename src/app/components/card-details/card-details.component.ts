@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { CardDetailsWindowComponent } from '../card-details-window/card-details-window.component';
-import { IconRegistryService } from 'src/app/services/icon-registry.service';
+import { IconRegistryService, CHECKBOX_ICON, CHECKED_ICON } from 'src/app/services/icon-registry.service';
 import { Observable } from 'rxjs';
 import { Card } from 'src/app/models/card';
 import { Store } from '@ngrx/store';
@@ -9,9 +9,6 @@ import { RootState } from 'src/app/root-store/root-state';
 import { selectCardById } from 'src/app/root-store/card-store/selectors';
 import { selectCardChecklistsItems } from 'src/app/root-store/checklist-item-store/selectors';
 import { ChecklistItem } from 'src/app/models/checklist-item';
-
-const INCOMPLETED_CHECKLIST_ICON: string = 'check-box-icon';
-const COMPLETED_CHECKLIST_ICON: string = 'checked-icon';
 
 @Component({
   selector: 'app-card-details',
@@ -33,8 +30,8 @@ export class CardDetailsComponent implements OnInit {
   }
 
   registerIcons() {
-    this.iconRegistry.registerIcon('check-box-icon');
-    this.iconRegistry.registerIcon('checked-icon');
+    this.iconRegistry.registerIcon(CHECKBOX_ICON);
+    this.iconRegistry.registerIcon(CHECKED_ICON);
   }
 
   ngOnInit() {
@@ -57,12 +54,12 @@ export class CardDetailsComponent implements OnInit {
   }
 
   getChecklistBadgeIcon(): string {
-    let result: string = INCOMPLETED_CHECKLIST_ICON;
+    let result: string = CHECKBOX_ICON;
     this.cardChecklistItems$.subscribe(items => {
       if(items && items.filter(item => !item.isChecked).length == 0) {
-        result = COMPLETED_CHECKLIST_ICON;
+        result = CHECKED_ICON;
       }
-      else result = INCOMPLETED_CHECKLIST_ICON;
+      else result = CHECKBOX_ICON;
     });
     return result;
   }

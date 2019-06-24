@@ -52,7 +52,7 @@ import { SimpleModalComponent } from './components/simple-modal/simple-modal.com
     RootStoreModule,
     StoreDevtoolsModule.instrument({
       maxAge: 25
-    }),
+    })
   ],
   entryComponents: [CardDetailsWindowComponent, SimpleModalComponent],
   providers: [],

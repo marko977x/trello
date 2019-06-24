@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { isEmpty } from 'src/app/services/object-checker';
 import { SetLoggedUser } from 'src/app/root-store/ui-store/actions';
 import { SignUp } from 'src/app/root-store/user-store/actions';
+import { DASHBOARD_URL } from 'src/app/app-routing.module';
 
 @Component({
   selector: 'app-sign-up',
@@ -37,7 +38,7 @@ export class SignUpComponent implements OnInit {
       this.email.setErrors({'email': true});
     }
     else {
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/' + DASHBOARD_URL]);
     }
   }
 

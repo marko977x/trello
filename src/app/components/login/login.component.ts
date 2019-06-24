@@ -9,6 +9,7 @@ import { isEmpty } from 'src/app/services/object-checker';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { SetLoggedUser } from 'src/app/root-store/ui-store/actions';
+import { DASHBOARD_URL } from 'src/app/app-routing.module';
 
 @Component({
   selector: 'app-login',
@@ -35,7 +36,7 @@ export class LoginComponent implements OnInit {
   login() {
     let userId: string = this.authService.login(this.email.value, this.password.value);
     if(!isEmpty(userId)) {
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/' + DASHBOARD_URL]);
       this.store$.dispatch(new SetLoggedUser(userId));
     }
     else {
