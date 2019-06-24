@@ -1,20 +1,20 @@
 {
   "boards": [
     {
-      "id": "board1",
+      "id": "bb75e5ab-e327-452a-b110-ba4dfb5ec598",
       "title": "Board Title",
       "lists": [
         "dfe2ef6e-9d24-47e4-8f5a-8752cc590fd5",
-        "22c567d3-1004-4e3f-a73f-ce3b4fd4e462"
+        "63fdaf5a-2e5f-474f-922c-029a422d2602"
       ],
       "user": "User Id",
       "backgroundIndex": 3
     },
     {
-      "id": "bb75e5ab-e327-452a-b110-ba4dfb5ec598",
-      "backgroundIndex": 8,
+      "id": "92a6850d-ccac-4ba7-80b7-a0347a18ca9a",
+      "backgroundIndex": 1,
       "lists": [
-        "ea6c25a0-7c40-45eb-a9c9-fca8b9c80503"
+        "1a509e11-b6e2-420d-bf47-b6e25b7c2366"
       ],
       "title": "New Board",
       "user": "user1"
@@ -23,31 +23,25 @@
   "lists": [
     {
       "id": "dfe2ef6e-9d24-47e4-8f5a-8752cc590fd5",
-      "board": "board1",
+      "board": "bb75e5ab-e327-452a-b110-ba4dfb5ec598",
       "cards": [
         "b31d089d-bde9-4af0-8a30-eb25eaa9682c"
       ],
       "title": "List One"
     },
     {
-      "id": "22c567d3-1004-4e3f-a73f-ce3b4fd4e462",
-      "board": "board1",
-      "cards": [],
-      "title": "List Two"
-    },
-    {
-      "id": "ea6c25a0-7c40-45eb-a9c9-fca8b9c80503",
-      "board": "bb75e5ab-e327-452a-b110-ba4dfb5ec598",
+      "id": "1a509e11-b6e2-420d-bf47-b6e25b7c2366",
+      "board": "92a6850d-ccac-4ba7-80b7-a0347a18ca9a",
       "cards": [
-        "1223e30e-0bcc-4cbb-ad4f-dfdcc6aa5b76"
+        "8860d157-2728-479d-a81b-54b73806bb77"
       ],
-      "title": "New List"
+      "title": "dsa"
     }
   ],
   "cards": [
     {
       "id": "b31d089d-bde9-4af0-8a30-eb25eaa9682c",
-      "board": "board1",
+      "board": "bb75e5ab-e327-452a-b110-ba4dfb5ec598",
       "checklists": [
         "94700e49-0b5d-471c-b26d-f43d7afb9f6c"
       ],
@@ -56,27 +50,24 @@
       "title": "card dsa dsa"
     },
     {
-      "id": "1223e30e-0bcc-4cbb-ad4f-dfdcc6aa5b76",
-      "board": "bb75e5ab-e327-452a-b110-ba4dfb5ec598",
+      "id": "8860d157-2728-479d-a81b-54b73806bb77",
+      "board": "92a6850d-ccac-4ba7-80b7-a0347a18ca9a",
       "checklists": [],
       "description": "",
-      "list": "ea6c25a0-7c40-45eb-a9c9-fca8b9c80503",
-      "title": "New Card"
+      "list": "1a509e11-b6e2-420d-bf47-b6e25b7c2366",
+      "title": "Card"
     }
   ],
   "checklists": [
-    {
-      "id": "fb2e1d34-131a-482d-94d3-1a759483004f",
-      "title": "Checklist One",
-      "items": []
-    },
     {
       "id": "94700e49-0b5d-471c-b26d-f43d7afb9f6c",
       "title": "asdf",
       "items": [
         "dummy",
         "dummy2"
-      ]
+      ],
+      "card": "b31d089d-bde9-4af0-8a30-eb25eaa9682c",
+      "list": "dfe2ef6e-9d24-47e4-8f5a-8752cc590fd5"
     }
   ],
   "checklistItems": [
@@ -84,13 +75,17 @@
       "id": "dummy",
       "text": "dummy",
       "isChecked": false,
-      "checklist": "dummy"
+      "checklist": "dummy",
+      "card": "b31d089d-bde9-4af0-8a30-eb25eaa9682c",
+      "list": "dfe2ef6e-9d24-47e4-8f5a-8752cc590fd5"
     },
     {
       "id": "dummy2",
       "text": "dummy2",
       "isChecked": false,
-      "checklist": "dummy2"
+      "checklist": "dummy2",
+      "card": "b31d089d-bde9-4af0-8a30-eb25eaa9682c",
+      "list": "dfe2ef6e-9d24-47e4-8f5a-8752cc590fd5"
     }
   ],
   "users": [
@@ -100,23 +95,9 @@
       "password": "marko977x",
       "username": "marko977x",
       "boards": [
-        "board1",
-        "bb75e5ab-e327-452a-b110-ba4dfb5ec598"
+        "bb75e5ab-e327-452a-b110-ba4dfb5ec598",
+        "92a6850d-ccac-4ba7-80b7-a0347a18ca9a"
       ]
-    },
-    {
-      "boards": [],
-      "email": "markoas@gmail.com",
-      "id": "a752e8b3-8bee-48b8-8cee-6a784a6b08ac",
-      "password": "marko",
-      "username": "marko"
-    },
-    {
-      "boards": [],
-      "email": "mmm@gmail.com",
-      "id": "555d6248-1e52-4ff8-aa18-03b194b50328",
-      "password": "mmm",
-      "username": "mmm"
     }
   ]
 }

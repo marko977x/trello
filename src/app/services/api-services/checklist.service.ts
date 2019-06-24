@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-import { RepositoryService } from './repository.service';
+import { RepositoryService, API_CHECKLIST_ITEMS_URL } from './repository.service';
 import { AddChecklist, SwapItems, DeleteChecklist } from 'src/app/root-store/checklist-store/actions';
 import { Checklist } from 'src/app/models/checklist';
 import { API_CARDS_URL, API_CHECKLISTS_URL } from './repository.service';
 import { Card } from 'src/app/models/card';
 import { moveItemInArray } from '@angular/cdk/drag-drop';
-import { Observable, forkJoin } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { Observable, forkJoin, concat } from 'rxjs';
+import { map, switchMap, mergeMap } from 'rxjs/operators';
+import { ChecklistItem } from 'src/app/models/checklist-item';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +32,6 @@ export class ChecklistService {
     swapItems(action: SwapItems): Observable<Checklist> {
       return this.repository.getOne<Checklist>(`${API_CARDS_URL}/${action.checklistId}`).pipe(
         map(checklist => {
-          console.log("Swap");
           moveItemInArray(checklist.items, action.previousIndex, action.currentIndex);
           return checklist;
         }),
@@ -39,16 +39,26 @@ export class ChecklistService {
       );
     }
 
-    deleteChecklist(action: DeleteChecklist): Observable<[Checklist, Card]> {
+    deleteChecklist(cardId: string, checklistId: string): Observable<[Checklist, Card]> {
       return forkJoin(
-        this.repository.deleteOne<Checklist>(`${API_CHECKLISTS_URL}/${action.checklistId}`),
-        this.repository.getOne<Card>(`${API_CARDS_URL}/${action.cardId}`).pipe(
+        this.deepDeleteChecklist(checklistId),
+        this.repository.getOne<Card>(`${API_CARDS_URL}/${cardId}`).pipe(
           map(card => {
-            card.checklists = card.checklists.filter(checklistId => checklistId !== action.checklistId);
+            card.checklists = card.checklists.filter(id => id !== checklistId);
             return card;
           }),
           switchMap(card => this.repository.updateOne<Card>(card, `${API_CARDS_URL}/${card.id}`))
         )
+      );
+    }
+
+    deepDeleteChecklist(checklistId: string): Observable<any> {
+      return concat(
+        this.repository.getOne<Checklist>(`${API_CHECKLISTS_URL}/${checklistId}`).pipe(
+          switchMap(checklist => checklist.items),
+          mergeMap(item => this.repository.deleteOne<ChecklistItem>(`${API_CHECKLIST_ITEMS_URL}/${item}`))
+        ),
+        this.repository.deleteOne<Checklist>(`${API_CHECKLISTS_URL}/${checklistId}`)
       );
     }
 }

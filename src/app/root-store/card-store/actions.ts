@@ -10,6 +10,7 @@ export enum CardActionTypes {
   DELETE_CARD_SUCCESS = '[CARD] Delete Card Success',
   ADD_CARD = '[CARD] Add Card',
   ADD_CARD_SUCCESS = '[CARD] Add Card Success',
+  ADD_CARD_ERROR = '[CARD] Add Card Error',
   CHANGE_CARD_TITLE = '[CARD] Change Card Title',
   CHANGE_CARD_TITLE_ERROR = '[CARD] Change Card Title Error'
 }
@@ -45,6 +46,11 @@ export class DeleteCardSuccess implements Action {
 
 export class AddCard implements Action {
   readonly type = CardActionTypes.ADD_CARD;
+  constructor(public listId: string, public card: Card) {}
+}
+
+export class AddCardError implements Action {
+  readonly type = CardActionTypes.ADD_CARD_ERROR;
   constructor(public listId: string, public card: Card) {}
 }
 

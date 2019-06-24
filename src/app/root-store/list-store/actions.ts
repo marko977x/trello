@@ -6,6 +6,7 @@ export enum ListActionTypes {
   LOAD_LISTS_SUCCESS = '[LIST] Load Lists Success',
   ADD_LIST = '[LIST] Add List',
   ADD_LIST_SUCCESS = '[LIST] Add List Success',
+  ADD_LIST_ERROR = '[LIST] Add List Error',
   DELETE_LIST = '[LIST] Delete List',
   DELETE_LIST_SUCCESS = '[LIST] Delete List Success'
 }
@@ -26,6 +27,11 @@ export class AddList implements Action {
 
 export class AddListSuccess implements Action {
   readonly type = ListActionTypes.ADD_LIST_SUCCESS;
+  constructor(public boardId: string, public list: List) {}
+}
+
+export class AddListError implements Action {
+  readonly type = ListActionTypes.ADD_LIST_ERROR;
   constructor(public boardId: string, public list: List) {}
 }
 

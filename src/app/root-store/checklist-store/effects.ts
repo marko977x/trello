@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { API_CHECKLISTS_URL } from 'src/app/services/api-services/repository.service';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { ChecklistActionTypes, LoadChecklistsSuccess, AddChecklist, AddChecklistSuccess, SwapItems, DeleteChecklist, DeleteChecklistSuccess } from './actions';
-import { mergeMap, map, tap } from 'rxjs/operators';
+import { ChecklistActionTypes, LoadChecklistsSuccess, AddChecklist, AddChecklistSuccess, SwapItems, DeleteChecklist, DeleteChecklistSuccess, DeleteChecklistError } from './actions';
+import { mergeMap, map, tap, catchError } from 'rxjs/operators';
 import { Checklist } from 'src/app/models/checklist';
 import { ChecklistService } from 'src/app/services/api-services/checklist.service';
-import { from } from 'rxjs';
+import { from, of } from 'rxjs';
 import { RepositoryService } from 'src/app/services/api-services/repository.service';
 
 @Injectable()
@@ -36,7 +36,7 @@ export class ChecklistStoreEffects {
 
   deleteChecklist$ = createEffect(() => this.actions$.pipe(
     ofType<DeleteChecklist>(ChecklistActionTypes.DELETE_CHECKLIST),
-    mergeMap((action) => this.checklistService.deleteChecklist(action).pipe(
+    mergeMap((action) => this.checklistService.deleteChecklist(action.cardId, action.checklistId).pipe(
       map(() => new DeleteChecklistSuccess(action.cardId, action.checklistId))
     ))
   ));

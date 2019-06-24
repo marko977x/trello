@@ -31,6 +31,8 @@ export class ChecklistComponent implements OnInit {
   checklistId: string;
   @Input()
   cardId: string;
+  @Input()
+  listId: string;
 
   constructor(
       private iconRegistry: IconRegistryService,
@@ -75,7 +77,9 @@ export class ChecklistComponent implements OnInit {
       id: uuid.v4(),
       checklist: this.checklistId,
       isChecked: false,
-      text: newItemText
+      text: newItemText,
+      card: this.cardId,
+      list: this.listId
     }));
 
     this.closeEditableForm();

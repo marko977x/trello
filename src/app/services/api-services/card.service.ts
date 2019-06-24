@@ -3,15 +3,19 @@ import { RepositoryService, API_LISTS_URL, API_CARDS_URL } from './repository.se
 import { AddCard, DeleteCard, SaveDescription, ChangeCardTitle } from 'src/app/root-store/card-store/actions';
 import { Card } from 'src/app/models/card';
 import { List } from 'src/app/models/list';
-import { Observable, forkJoin } from 'rxjs';
-import { flatMap, map, pluck, switchMap, catchError } from 'rxjs/operators';
+import { Observable, forkJoin, concat } from 'rxjs';
+import { flatMap, map, pluck, switchMap, catchError, mergeMap } from 'rxjs/operators';
+import { ChecklistService } from './checklist.service';
+import { Checklist } from 'src/app/models/checklist';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CardService {
 
-  constructor(private repository: RepositoryService) { }
+  constructor(
+    private repository: RepositoryService,
+    private checklistService: ChecklistService) { }
 
   addCard(action: AddCard): Observable<[Card, List]> {
     return forkJoin(
@@ -26,16 +30,26 @@ export class CardService {
     )
   }
 
-  deleteCard(action: DeleteCard): Observable<[Card, List]> {
+  deleteCard(cardId: string, listId: string): Observable<[Card, List]> {
     return forkJoin(
-      this.repository.deleteOne<Card>(`${API_CARDS_URL}/${action.cardId}`),
-      this.repository.getOne<List>(`${API_LISTS_URL}/${action.listId}`).pipe(
+      this.deepDeleteCard(cardId),
+      this.repository.getOne<List>(`${API_LISTS_URL}/${listId}`).pipe(
         map(list => {
-          list.cards = list.cards.filter(cardId => cardId !== action.cardId);
+          list.cards = list.cards.filter(id => id !== cardId);
           return list;
         }),
         switchMap(list => this.repository.updateOne<List>(list, `${API_LISTS_URL}/${list.id}`))
       )
+    )
+  }
+
+  deepDeleteCard(cardId: string): Observable<any> {
+    return concat(
+      this.repository.getOne<Card>(`${API_CARDS_URL}/${cardId}`).pipe(
+        switchMap(card => card.checklists),
+        mergeMap(checklist => this.checklistService.deepDeleteChecklist(checklist))
+      ),
+      this.repository.deleteOne<Card>(`${API_CARDS_URL}/${cardId}`)
     )
   }
 

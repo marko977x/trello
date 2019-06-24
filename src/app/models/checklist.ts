@@ -1,5 +1,7 @@
 export interface Checklist {
   id: string,
   title: string,
-  items: string[]
+  items: string[],
+  card: string,
+  list: string
 }
