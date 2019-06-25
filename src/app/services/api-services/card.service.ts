@@ -3,8 +3,8 @@ import { RepositoryService, API_LISTS_URL, API_CARDS_URL } from './repository.se
 import { AddCard, DeleteCard, SaveDescription, ChangeCardTitle } from 'src/app/root-store/card-store/actions';
 import { Card } from 'src/app/models/card';
 import { List } from 'src/app/models/list';
-import { Observable, forkJoin, concat } from 'rxjs';
-import { flatMap, map, pluck, switchMap, catchError, mergeMap } from 'rxjs/operators';
+import { Observable, forkJoin, concat, of } from 'rxjs';
+import { flatMap, map, pluck, switchMap, catchError, mergeMap, tap } from 'rxjs/operators';
 import { ChecklistService } from './checklist.service';
 import { Checklist } from 'src/app/models/checklist';
 
@@ -47,9 +47,12 @@ export class CardService {
     return concat(
       this.repository.getOne<Card>(`${API_CARDS_URL}/${cardId}`).pipe(
         switchMap(card => card.checklists),
-        mergeMap(checklist => this.checklistService.deepDeleteChecklist(checklist))
+        mergeMap(checklist => {
+          return this.checklistService.deepDeleteChecklist(checklist)})
       ),
-      this.repository.deleteOne<Card>(`${API_CARDS_URL}/${cardId}`)
+      this.repository.deleteOne<Card>(`${API_CARDS_URL}/${cardId}`).pipe(
+        catchError(error => of(console.log(error)))
+      )
     )
   }
 

@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { List } from 'src/app/models/list';
 import { API_LISTS_URL, API_BOARDS_URL, API_CARDS_URL } from './repository.service';
-import { AddList, DeleteList } from 'src/app/root-store/list-store/actions';
 import { Board } from 'src/app/models/board';
 import { RepositoryService } from './repository.service';
-import { forkJoin, Observable, from, concat } from 'rxjs';
-import { switchMap, map, mergeMapTo, mergeMap } from 'rxjs/operators';
-import { Card } from 'src/app/models/card';
+import { forkJoin, Observable, from, concat, of } from 'rxjs';
+import { switchMap, map, mergeMapTo, mergeMap, tap, catchError } from 'rxjs/operators';
 import { CardService } from './card.service';
+import { SwapCards } from 'src/app/root-store/list-store/actions';
+import { moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Injectable({
   providedIn: 'root'
@@ -50,7 +50,19 @@ export class ListService {
         switchMap(list => list.cards),
         mergeMap(card => this.cardService.deepDeleteCard(card))
       ),
-      this.repository.deleteOne<List>(`${API_LISTS_URL}/${listId}`)
+      this.repository.deleteOne<List>(`${API_LISTS_URL}/${listId}`).pipe(
+        catchError(error => of(console.log(error)))
+      )
+    )
+  }
+
+  swapCards(action: SwapCards): Observable<List> {
+    return this.repository.getOne<List>(`${API_LISTS_URL}/${action.listId}`).pipe(
+      map((list) => {
+        moveItemInArray(list.cards, action.previousIndex, action.currentIndex);
+        return list;
+      }),
+      switchMap(list => this.repository.updateOne<List>(list, `${API_LISTS_URL}/${list.id}`))
     )
   }
 }

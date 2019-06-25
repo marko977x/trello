@@ -8,7 +8,10 @@ export enum ListActionTypes {
   ADD_LIST_SUCCESS = '[LIST] Add List Success',
   ADD_LIST_ERROR = '[LIST] Add List Error',
   DELETE_LIST = '[LIST] Delete List',
-  DELETE_LIST_SUCCESS = '[LIST] Delete List Success'
+  DELETE_LIST_SUCCESS = '[LIST] Delete List Success',
+  SWAP_CARDS = '[LIST] Swap Cards',
+  SWAP_CARDS_SUCCESS = '[LIST] Swap Cards Success',
+  SWAP_CARDS_ERROR = '[LIST] Swap Cards Error'
 }
 
 export class LoadLists implements Action {
@@ -43,4 +46,28 @@ export class DeleteList implements Action {
 export class DeleteListSuccess implements Action {
   readonly type = ListActionTypes.DELETE_LIST_SUCCESS;
   constructor(public boardId: string, public listId: string) {}
+}
+
+export class SwapCards implements Action {
+  readonly type = ListActionTypes.SWAP_CARDS;
+  constructor(
+    public listId: string,
+    public previousIndex: number,
+    public currentIndex: number) {}
+}
+
+export class SwapCardsSuccess implements Action {
+  readonly type = ListActionTypes.SWAP_CARDS_SUCCESS;
+  constructor(
+    public listId: string,
+    public previousIndex: number,
+    public currentIndex: number) {}
+}
+
+export class SwapCardsError implements Action {
+  readonly type = ListActionTypes.SWAP_CARDS_ERROR;
+  constructor(
+    public listId: string,
+    public previousIndex: number,
+    public currentIndex: number) {}
 }

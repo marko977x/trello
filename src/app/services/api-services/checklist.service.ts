@@ -5,8 +5,8 @@ import { Checklist } from 'src/app/models/checklist';
 import { API_CARDS_URL, API_CHECKLISTS_URL } from './repository.service';
 import { Card } from 'src/app/models/card';
 import { moveItemInArray } from '@angular/cdk/drag-drop';
-import { Observable, forkJoin, concat } from 'rxjs';
-import { map, switchMap, mergeMap } from 'rxjs/operators';
+import { Observable, forkJoin, concat, of } from 'rxjs';
+import { map, switchMap, mergeMap, tap, catchError } from 'rxjs/operators';
 import { ChecklistItem } from 'src/app/models/checklist-item';
 
 @Injectable({
@@ -30,7 +30,7 @@ export class ChecklistService {
     }
 
     swapItems(action: SwapItems): Observable<Checklist> {
-      return this.repository.getOne<Checklist>(`${API_CARDS_URL}/${action.checklistId}`).pipe(
+      return this.repository.getOne<Checklist>(`${API_CHECKLISTS_URL}/${action.checklistId}`).pipe(
         map(checklist => {
           moveItemInArray(checklist.items, action.previousIndex, action.currentIndex);
           return checklist;
@@ -56,9 +56,12 @@ export class ChecklistService {
       return concat(
         this.repository.getOne<Checklist>(`${API_CHECKLISTS_URL}/${checklistId}`).pipe(
           switchMap(checklist => checklist.items),
-          mergeMap(item => this.repository.deleteOne<ChecklistItem>(`${API_CHECKLIST_ITEMS_URL}/${item}`))
+          mergeMap(item => {
+            return this.repository.deleteOne<ChecklistItem>(`${API_CHECKLIST_ITEMS_URL}/${item}`)})
         ),
-        this.repository.deleteOne<Checklist>(`${API_CHECKLISTS_URL}/${checklistId}`)
+        this.repository.deleteOne<Checklist>(`${API_CHECKLISTS_URL}/${checklistId}`).pipe(
+          catchError(error => of(console.log(error)))
+        )
       );
     }
 }

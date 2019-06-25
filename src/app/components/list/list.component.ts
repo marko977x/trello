@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import { ListState } from 'src/app/root-store/list-store/state';
 import { selectListById } from 'src/app/root-store/list-store/selectors';
 import { List } from 'src/app/models/list';
-import { DeleteList } from 'src/app/root-store/list-store/actions';
+import { DeleteList, SwapCards } from 'src/app/root-store/list-store/actions';
 import { IconRegistryService, PLUS_ICON, DELETE_ICON } from 'src/app/services/icon-registry.service';
 import { AddCard } from 'src/app/root-store/card-store/actions';
 import * as uuid from "uuid";
@@ -47,16 +47,9 @@ export class ListComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<string[]>) {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } 
-    else {
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex);
-    }
+    this.store$.dispatch(new SwapCards(
+      this.listId, event.previousIndex, event.currentIndex
+    ));
   }
 
   showEditableForm() {

@@ -1,8 +1,8 @@
 import { initialState, CardState, CardAdapter } from "./state";
 import { Action } from '@ngrx/store';
-import { CardActionTypes, LoadCardsSuccess, SaveDescription, DeleteCardSuccess, AddCardSuccess, ChangeCardTitleError, ChangeCardTitle, AddCard, AddCardError } from './actions';
+import { CardActionTypes, LoadCardsSuccess, SaveDescription, DeleteCardSuccess, ChangeCardTitle, AddCard, AddCardError } from './actions';
 import { ChecklistActionTypes, AddChecklistSuccess, DeleteChecklistSuccess } from '../checklist-store/actions';
-import { Update, Dictionary } from '@ngrx/entity';
+import { Update } from '@ngrx/entity';
 import { Card } from 'src/app/models/card';
 import { ListActionTypes, DeleteListSuccess } from '../list-store/actions';
 

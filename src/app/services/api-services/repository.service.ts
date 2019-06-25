@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 export const API_BASE_URL = "http://localhost:4000/";
 export const API_LISTS_URL = API_BASE_URL + "lists";

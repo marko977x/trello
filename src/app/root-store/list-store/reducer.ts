@@ -1,9 +1,10 @@
 import { initialState, ListState, ListAdapter } from './state';
 import { Action } from '@ngrx/store';
-import { ListActionTypes, LoadListsSuccess, DeleteListSuccess, AddListError, AddList } from './actions';
+import { ListActionTypes, LoadListsSuccess, DeleteListSuccess, AddListError, AddList, SwapCards, SwapCardsError } from './actions';
 import { CardActionTypes, DeleteCardSuccess, AddCardSuccess, AddCard } from '../card-store/actions';
 import { List } from 'src/app/models/list';
 import { Update } from '@ngrx/entity';
+import { transferArrayItem, moveItemInArray } from '@angular/cdk/drag-drop';
 
 function reducer(state = initialState, action: Action): ListState {
   switch(action.type) {
@@ -41,6 +42,24 @@ function reducer(state = initialState, action: Action): ListState {
     }
     case ListActionTypes.DELETE_LIST_SUCCESS: {
       return ListAdapter.removeOne((action as DeleteListSuccess).listId, state);
+    }
+    case ListActionTypes.SWAP_CARDS: {
+      const {currentIndex, previousIndex, listId} = (action as SwapCards);
+      moveItemInArray(
+        state.entities[listId].cards,
+        previousIndex,
+        currentIndex
+      )
+      return state;
+    }
+    case ListActionTypes.SWAP_CARDS_ERROR: {
+      const {currentIndex, previousIndex, listId} = (action as SwapCardsError);
+      moveItemInArray(
+        state.entities[listId].cards,
+        currentIndex,
+        previousIndex
+      )
+      return state;
     }
     default: return state;
   }
