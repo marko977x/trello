@@ -2,6 +2,7 @@ import { Ui } from 'src/app/models/ui';
 import { Action } from '@ngrx/store';
 import { UiActionTypes, SetLoggedUser, OpenBoard } from './actions';
 import { getItemFromLocalStorage } from 'src/app/services/local-storage';
+import { UserActionTypes, SignUpSuccess } from '../user-store/actions';
 
 export const initialState: Ui = {
   loggedUser: "",
@@ -29,6 +30,11 @@ function reducer(state = initialState, action: Action): Ui {
         boardId: "",
         isDashboardPage: false,
         loggedUser: ""
+      }
+    }
+    case UserActionTypes.SIGN_UP_SUCCESS: {
+      return {
+        ...state, loggedUser: (action as SignUpSuccess).user.id
       }
     }
     default: {

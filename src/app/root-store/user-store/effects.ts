@@ -24,10 +24,8 @@ export class UserStoreEffects {
   signUp$ = createEffect(() => this.actions$.pipe(
     ofType<SignUp>(UserActionTypes.SIGN_UP),
     map(action => action.user),
-    switchMap(user => this.userService.addUser(user)),
-    switchMap(user => [
-      new SignUpSuccess(user),
-      new SetLoggedUser(user.id)
-    ])
+    switchMap(user => this.userService.addUser(user).pipe(
+      map(user => new SignUpSuccess(user))
+    )),
   ));
 }

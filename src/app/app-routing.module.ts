@@ -6,6 +6,10 @@ import { DashboardComponent } from './containers/dashboard/dashboard.component';
 
 const routes: Routes = [
   {
+    path: '',
+    component: HomeComponent
+  },
+  {
     path: 'home',
     component: HomeComponent
   },

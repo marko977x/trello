@@ -33,18 +33,5 @@ export class AppComponent  {
   }
 
   ngOnInit() {
-    this.router.events.subscribe(event => {
-      if(event instanceof NavigationEnd) {
-        const isLogged: boolean = getItemFromLocalStorage<Ui>('ui').loggedUser !== "";
-        if(isLogged) {
-          if(event.url !== `/${DASHBOARD_URL}` || event.url !== `/${BOARD_URL}`)
-            this.router.navigate([`/${DASHBOARD_URL}`]);
-        }
-        else {
-          if(event.url !== `/${HOME_URL}`) this.router.navigate([`/${HOME_URL}`]);
-        }
-        this.router.navigate([event.url]);
-      }
-    });
   }
 }
