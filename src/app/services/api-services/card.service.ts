@@ -3,7 +3,7 @@ import { RepositoryService, API_LISTS_URL, API_CARDS_URL } from './repository.se
 import { AddCard, DeleteCard, SaveDescription, ChangeCardTitle } from 'src/app/root-store/card-store/actions';
 import { Card } from 'src/app/models/card';
 import { List } from 'src/app/models/list';
-import { Observable, forkJoin, concat, of } from 'rxjs';
+import { Observable, forkJoin, concat, of, from } from 'rxjs';
 import { flatMap, map, pluck, switchMap, catchError, mergeMap, tap } from 'rxjs/operators';
 import { ChecklistService } from './checklist.service';
 import { Checklist } from 'src/app/models/checklist';
@@ -46,14 +46,14 @@ export class CardService {
   deepDeleteCard(cardId: string): Observable<any> {
     return concat(
       this.repository.getOne<Card>(`${API_CARDS_URL}/${cardId}`).pipe(
-        switchMap(card => card.checklists),
-        mergeMap(checklist => {
-          return this.checklistService.deepDeleteChecklist(checklist)})
+        switchMap(card => {
+          return from(card.checklists).pipe(
+            map(checklist => this.checklistService.deepDeleteChecklist(checklist).subscribe()),
+          )
+        })
       ),
-      this.repository.deleteOne<Card>(`${API_CARDS_URL}/${cardId}`).pipe(
-        catchError(error => of(console.log(error)))
-      )
-    )
+      this.repository.deleteOne<Card>(`${API_CARDS_URL}/${cardId}`)
+    );
   }
 
   changeDescription(action: SaveDescription): Observable<Card> {
@@ -67,9 +67,9 @@ export class CardService {
   }
 
   changeCardTitle(action: ChangeCardTitle): Observable<Card> {
+    console.log("delete card");
     return this.repository.getOne<Card>(`${API_CARDS_URL}/${action.cardId}`).pipe(
       map(card => {
-        console.log(card);
         card.title = action.title;
         return card;
       }),

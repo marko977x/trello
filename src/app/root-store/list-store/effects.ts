@@ -39,8 +39,8 @@ export class ListStoreEffects {
   swapCards$ = createEffect(() => this.actions$.pipe(
     ofType<SwapCards>(ListActionTypes.SWAP_CARDS),
     mergeMap((action) => this.listService.swapCards(action).pipe(
-      map(() => new SwapCardsSuccess(action.listId, action.previousIndex, action.currentIndex)),
-      catchError(() => of(new SwapCardsError(action.listId, action.previousIndex, action.currentIndex)))
+      map(() => new SwapCardsSuccess(action.container, action.index, action.cardId)),
+      catchError(() => of(new SwapCardsError(action.container, action.index, action.cardId)))
     ))
   ))
 }

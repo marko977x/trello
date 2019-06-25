@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { RepositoryService, API_CHECKLIST_ITEMS_URL, API_CHECKLISTS_URL } from './repository.service';
 import { ChecklistItem } from 'src/app/models/checklist-item';
-import { map, switchMap, mergeMap } from 'rxjs/operators';
-import { Observable, forkJoin, concat } from 'rxjs';
+import { map, switchMap, mergeMap, catchError } from 'rxjs/operators';
+import { Observable, forkJoin, concat, of } from 'rxjs';
 import { AddChecklistItem, SaveChecklistItemText, DeleteChecklistItem } from 'src/app/root-store/checklist-item-store/actions';
 import { Checklist } from 'src/app/models/checklist';
 
@@ -58,7 +58,9 @@ export class ChecklistItemService {
         switchMap(checklist => this.repository.updateOne<Checklist>(
           checklist, `${API_CHECKLISTS_URL}/${checklist.id}`))
         ),
-      this.repository.deleteOne<ChecklistItem>(`${API_CHECKLIST_ITEMS_URL}/${action.itemId}`),
+      this.repository.deleteOne<ChecklistItem>(`${API_CHECKLIST_ITEMS_URL}/${action.itemId}`).pipe(
+        catchError(error => of(console.log(error)))
+      )
     );
   }
 }

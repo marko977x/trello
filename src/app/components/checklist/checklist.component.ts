@@ -74,9 +74,7 @@ export class ChecklistComponent implements OnInit {
       id: uuid.v4(),
       checklist: this.checklistId,
       isChecked: false,
-      text: newItemText,
-      card: this.cardId,
-      list: this.listId
+      text: newItemText
     }));
 
     this.closeEditableForm();

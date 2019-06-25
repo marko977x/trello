@@ -4,7 +4,7 @@ import { CardActionTypes, LoadCardsSuccess, SaveDescription, DeleteCardSuccess, 
 import { ChecklistActionTypes, AddChecklistSuccess, DeleteChecklistSuccess } from '../checklist-store/actions';
 import { Update } from '@ngrx/entity';
 import { Card } from 'src/app/models/card';
-import { ListActionTypes, DeleteListSuccess } from '../list-store/actions';
+import { ListActionTypes, DeleteListSuccess, SwapCards, SwapCardsError } from '../list-store/actions';
 
 function reducer(state = initialState, action: Action): CardState {
   switch(action.type) {
@@ -61,6 +61,26 @@ function reducer(state = initialState, action: Action): CardState {
         if(state.entities[key].list === listId) cards.push(key);
       }
       return CardAdapter.removeMany(cards, state);
+    }
+    case ListActionTypes.SWAP_CARDS: {
+      const {cardId, container} = (action as SwapCards);
+      return {...state, entities: {
+        ...state.entities,
+        [cardId]: {
+          ...state.entities[cardId],
+          list: container.current
+        }
+      }}
+    }
+    case ListActionTypes.SWAP_CARDS_ERROR: {
+      const {cardId, container} = (action as SwapCardsError);
+      return {...state, entities: {
+        ...state.entities,
+        [cardId]: {
+          ...state.entities[cardId],
+          list: container.previous
+        }
+      }}
     }
     default: return state;
   }

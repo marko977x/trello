@@ -44,21 +44,41 @@ function reducer(state = initialState, action: Action): ListState {
       return ListAdapter.removeOne((action as DeleteListSuccess).listId, state);
     }
     case ListActionTypes.SWAP_CARDS: {
-      const {currentIndex, previousIndex, listId} = (action as SwapCards);
-      moveItemInArray(
-        state.entities[listId].cards,
-        previousIndex,
-        currentIndex
-      )
+      const {container, index} = (action as SwapCards);
+      if(container.current !== container.previous) {
+        transferArrayItem(
+          state.entities[container.previous].cards,
+          state.entities[container.current].cards,
+          index.previous,
+          index.current
+        );
+      }
+      else {
+        moveItemInArray(
+          state.entities[container.current].cards,
+          index.previous,
+          index.current
+        );
+      }
       return state;
     }
     case ListActionTypes.SWAP_CARDS_ERROR: {
-      const {currentIndex, previousIndex, listId} = (action as SwapCardsError);
-      moveItemInArray(
-        state.entities[listId].cards,
-        currentIndex,
-        previousIndex
-      )
+      const {container, index} = (action as SwapCards);
+      if(container.current !== container.previous) {
+        transferArrayItem(
+          state.entities[container.current].cards,
+          state.entities[container.previous].cards,
+          index.current,
+          index.previous
+        );
+      }
+      else {
+        moveItemInArray(
+          state.entities[container.current].cards,
+          index.current,
+          index.previous
+        );
+      }
       return state;
     }
     default: return state;

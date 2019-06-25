@@ -1,10 +1,9 @@
 import { initialState, ChecklistItemState, ChecklistItemAdapter } from './state';
 import { Action } from '@ngrx/store';
-import { ChecklistItemActionTypes, LoadChecklistItemsSuccess, ToggleChecklistItem, DeleteChecklistItem, SaveChecklistItemText, AddChecklistItem, ToggleChecklistItemSuccess, SaveChecklistItemTextSuccess, AddChecklistItemSuccess, AddChecklistItemError } from './actions';
+import { ChecklistItemActionTypes, LoadChecklistItemsSuccess, DeleteChecklistItem, SaveChecklistItemText, AddChecklistItem, ToggleChecklistItemSuccess, SaveChecklistItemTextSuccess, AddChecklistItemSuccess, AddChecklistItemError } from './actions';
 import { Update } from '@ngrx/entity';
 import { ChecklistItem } from 'src/app/models/checklist-item';
-import { ChecklistActionTypes, DeleteChecklist, DeleteChecklistSuccess } from '../checklist-store/actions';
-import { ListActionTypes, DeleteListSuccess } from '../list-store/actions';
+import { ChecklistActionTypes, DeleteChecklistSuccess } from '../checklist-store/actions';
 
 function reducer(state = initialState, action: Action): ChecklistItemState {
   switch(action.type) {
@@ -43,14 +42,6 @@ function reducer(state = initialState, action: Action): ChecklistItemState {
     }
     case ChecklistItemActionTypes.ADD_CHECKLIST_ITEM_ERROR: {
       return ChecklistItemAdapter.removeOne((action as AddChecklistItemError).item.id, state);
-    }
-    case ListActionTypes.DELETE_LIST_SUCCESS: {
-      const {listId} = (action as DeleteListSuccess);
-      const checklistItems: string[] = [];
-      for(let key in state.entities) {
-        if(state.entities[key].list === listId) checklistItems.push(key);
-      }
-      return ChecklistItemAdapter.removeMany(checklistItems, state);
     }
     default: return state;
   }

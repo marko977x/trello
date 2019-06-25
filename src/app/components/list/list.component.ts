@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { ListState } from 'src/app/root-store/list-store/state';
@@ -48,7 +48,9 @@ export class ListComponent implements OnInit {
 
   drop(event: CdkDragDrop<string[]>) {
     this.store$.dispatch(new SwapCards(
-      this.listId, event.previousIndex, event.currentIndex
+      {previous: event.previousContainer.id, current: event.container.id},
+      {previous: event.previousIndex, current: event.currentIndex},
+      event.previousContainer.data[event.previousIndex]
     ));
   }
 
@@ -63,7 +65,6 @@ export class ListComponent implements OnInit {
   addNewCard(newCardTitle: string) {
     this.store$.dispatch(new AddCard(this.listId, {
       id: uuid.v4(),
-      board: this.boardId,
       checklists: [],
       description: "",
       list: this.listId,

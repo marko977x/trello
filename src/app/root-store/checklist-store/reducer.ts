@@ -55,14 +55,6 @@ function reducer(state = initialState, action: Action): ChecklistState {
     case ChecklistActionTypes.ADD_CHECKLIST_SUCCESS: {
       return ChecklistAdapter.addOne((action as AddChecklistSuccess).checklist, state);
     }
-    case ListActionTypes.DELETE_LIST_SUCCESS: {
-      const {listId} = (action as DeleteListSuccess);
-      const checklists: string[] = [];
-      for(let key in state.entities) {
-        if(state.entities[key].list === listId) checklists.push(key);
-      }
-      return ChecklistAdapter.removeMany(checklists, state);
-    }
     default: return state;
   }
 }

@@ -4,228 +4,35 @@
       "id": "bb75e5ab-e327-452a-b110-ba4dfb5ec598",
       "title": "Board Title",
       "lists": [
-        "b756c541-2ee7-409a-acdd-11160c66f9b1",
-        "5de29132-47fb-485a-b0e7-1a4be8d1d50a"
+        "f31a1a87-08ba-4b7a-930c-8c371b38afec",
+        "4d8fbf37-9f8a-423b-a8fa-cb55c6d67ae9"
       ],
       "user": "User Id",
       "backgroundIndex": 3
-    },
-    {
-      "id": "9698df86-892b-4c80-8204-f219bb0eb0ab",
-      "backgroundIndex": 5,
-      "lists": [
-        "9d970e9d-d82f-44e9-b7b1-565b8b0d4131"
-      ],
-      "title": "Board 2",
-      "user": "user1"
-    },
-    {
-      "id": "9c98ad10-a078-4cc2-b035-7ce1c6cf043a",
-      "backgroundIndex": 1,
-      "lists": [
-        "14bd3bcb-6b72-4b4b-bbc4-0cb58e996c27"
-      ],
-      "title": "etgsdwdq",
-      "user": "4d951af4-6cc1-43a9-b8ce-3cb9cf4c9985"
     }
   ],
   "lists": [
     {
-      "id": "b756c541-2ee7-409a-acdd-11160c66f9b1",
+      "id": "f31a1a87-08ba-4b7a-930c-8c371b38afec",
       "board": "bb75e5ab-e327-452a-b110-ba4dfb5ec598",
-      "cards": [
-        "830aeeb1-6329-484d-8053-7468bf176670",
-        "c8a4bde5-26d6-44d7-a32e-017101b49d26"
-      ],
-      "title": "qswax"
+      "cards": [],
+      "title": "dsqewsa"
     },
     {
-      "id": "5de29132-47fb-485a-b0e7-1a4be8d1d50a",
+      "id": "4d8fbf37-9f8a-423b-a8fa-cb55c6d67ae9",
       "board": "bb75e5ab-e327-452a-b110-ba4dfb5ec598",
-      "cards": [
-        "b2982ed5-6186-4020-bb3f-645e7d1509e2",
-        "c2112aec-f506-4250-a457-9762f6439a3a",
-        "061856b2-2f80-4cc1-af59-71e5be1b51c9"
-      ],
-      "title": "fasdafas"
-    },
-    {
-      "id": "9d970e9d-d82f-44e9-b7b1-565b8b0d4131",
-      "board": "9698df86-892b-4c80-8204-f219bb0eb0ab",
-      "cards": [
-        "dd3da22f-0979-482f-9cab-b7c6061f45f1",
-        "f70034a2-f7c3-4b70-8418-5193516cb795"
-      ],
-      "title": "dsafad"
-    },
-    {
-      "id": "14bd3bcb-6b72-4b4b-bbc4-0cb58e996c27",
-      "board": "9c98ad10-a078-4cc2-b035-7ce1c6cf043a",
-      "cards": [
-        "29778d42-b5e9-442f-9d62-39b8b2483073",
-        "5e13c7c4-6106-4210-8f48-c0b4a488eb7c"
-      ],
-      "title": "dsawdq"
+      "cards": [],
+      "title": "dsqweasdqwdqas"
     }
   ],
-  "cards": [
-    {
-      "id": "830aeeb1-6329-484d-8053-7468bf176670",
-      "board": "bb75e5ab-e327-452a-b110-ba4dfb5ec598",
-      "checklists": [
-        "62f6bb4d-5076-4564-b01c-250d8ce941da"
-      ],
-      "description": "",
-      "list": "b756c541-2ee7-409a-acdd-11160c66f9b1",
-      "title": "dasfasd"
-    },
-    {
-      "id": "b2982ed5-6186-4020-bb3f-645e7d1509e2",
-      "board": "bb75e5ab-e327-452a-b110-ba4dfb5ec598",
-      "checklists": [],
-      "description": "",
-      "list": "5de29132-47fb-485a-b0e7-1a4be8d1d50a",
-      "title": "fsadasf"
-    },
-    {
-      "id": "c2112aec-f506-4250-a457-9762f6439a3a",
-      "board": "bb75e5ab-e327-452a-b110-ba4dfb5ec598",
-      "checklists": [],
-      "description": "",
-      "list": "5de29132-47fb-485a-b0e7-1a4be8d1d50a",
-      "title": "fsadsaf"
-    },
-    {
-      "id": "061856b2-2f80-4cc1-af59-71e5be1b51c9",
-      "board": "bb75e5ab-e327-452a-b110-ba4dfb5ec598",
-      "checklists": [],
-      "description": "",
-      "list": "5de29132-47fb-485a-b0e7-1a4be8d1d50a",
-      "title": "fasdasf"
-    },
-    {
-      "id": "c8a4bde5-26d6-44d7-a32e-017101b49d26",
-      "board": "bb75e5ab-e327-452a-b110-ba4dfb5ec598",
-      "checklists": [],
-      "description": "",
-      "list": "b756c541-2ee7-409a-acdd-11160c66f9b1",
-      "title": "fasdasf"
-    },
-    {
-      "id": "dd3da22f-0979-482f-9cab-b7c6061f45f1",
-      "board": "9698df86-892b-4c80-8204-f219bb0eb0ab",
-      "checklists": [],
-      "description": "",
-      "list": "9d970e9d-d82f-44e9-b7b1-565b8b0d4131",
-      "title": "fadwq"
-    },
-    {
-      "id": "f70034a2-f7c3-4b70-8418-5193516cb795",
-      "board": "9698df86-892b-4c80-8204-f219bb0eb0ab",
-      "checklists": [],
-      "description": "",
-      "list": "9d970e9d-d82f-44e9-b7b1-565b8b0d4131",
-      "title": "qwedsxz"
-    },
-    {
-      "id": "29778d42-b5e9-442f-9d62-39b8b2483073",
-      "board": "9c98ad10-a078-4cc2-b035-7ce1c6cf043a",
-      "checklists": [
-        "51f3cc1d-9a2d-4d0c-917c-c770ac3e6757",
-        "d3fab768-6bd2-4878-a14c-4d5719c77342"
-      ],
-      "description": "",
-      "list": "14bd3bcb-6b72-4b4b-bbc4-0cb58e996c27",
-      "title": "dsaqdwq"
-    },
-    {
-      "id": "5e13c7c4-6106-4210-8f48-c0b4a488eb7c",
-      "board": "9c98ad10-a078-4cc2-b035-7ce1c6cf043a",
-      "checklists": [],
-      "description": "",
-      "list": "14bd3bcb-6b72-4b4b-bbc4-0cb58e996c27",
-      "title": "dsafawd"
-    }
-  ],
-  "checklists": [
-    {
-      "id": "62f6bb4d-5076-4564-b01c-250d8ce941da",
-      "title": "fasdsfa",
-      "items": [
-        "84c4fedf-a365-4c9d-ade9-f4e6fdf0deb4"
-      ],
-      "card": "830aeeb1-6329-484d-8053-7468bf176670",
-      "list": "b756c541-2ee7-409a-acdd-11160c66f9b1"
-    },
-    {
-      "id": "51f3cc1d-9a2d-4d0c-917c-c770ac3e6757",
-      "title": "dwqdsa",
-      "items": [
-        "13ffb901-0584-43bb-8687-e8aca7c29d7e",
-        "d826799e-5c0c-444a-b14a-1a81c8291120"
-      ],
-      "card": "29778d42-b5e9-442f-9d62-39b8b2483073",
-      "list": "14bd3bcb-6b72-4b4b-bbc4-0cb58e996c27"
-    },
-    {
-      "id": "d3fab768-6bd2-4878-a14c-4d5719c77342",
-      "title": "qdcxzsa",
-      "items": [
-        "4ef3aa1c-e8e3-4893-b557-5708906eb96c",
-        "2221eebb-87f5-43f0-be12-3d586d292b2e"
-      ],
-      "card": "29778d42-b5e9-442f-9d62-39b8b2483073",
-      "list": "14bd3bcb-6b72-4b4b-bbc4-0cb58e996c27"
-    }
-  ],
+  "cards": [],
+  "checklists": [],
   "checklistItems": [
     {
       "id": "test",
       "text": "test",
       "isChecked": false,
-      "checklist": "test",
-      "card": "test",
-      "list": "test"
-    },
-    {
-      "id": "84c4fedf-a365-4c9d-ade9-f4e6fdf0deb4",
-      "checklist": "62f6bb4d-5076-4564-b01c-250d8ce941da",
-      "isChecked": false,
-      "text": "dasfas",
-      "card": "830aeeb1-6329-484d-8053-7468bf176670",
-      "list": "b756c541-2ee7-409a-acdd-11160c66f9b1"
-    },
-    {
-      "id": "13ffb901-0584-43bb-8687-e8aca7c29d7e",
-      "checklist": "51f3cc1d-9a2d-4d0c-917c-c770ac3e6757",
-      "isChecked": true,
-      "text": "dqwdsa",
-      "card": "29778d42-b5e9-442f-9d62-39b8b2483073",
-      "list": "14bd3bcb-6b72-4b4b-bbc4-0cb58e996c27"
-    },
-    {
-      "id": "d826799e-5c0c-444a-b14a-1a81c8291120",
-      "checklist": "51f3cc1d-9a2d-4d0c-917c-c770ac3e6757",
-      "isChecked": true,
-      "text": "wqdsadwq",
-      "card": "29778d42-b5e9-442f-9d62-39b8b2483073",
-      "list": "14bd3bcb-6b72-4b4b-bbc4-0cb58e996c27"
-    },
-    {
-      "id": "2221eebb-87f5-43f0-be12-3d586d292b2e",
-      "checklist": "d3fab768-6bd2-4878-a14c-4d5719c77342",
-      "isChecked": true,
-      "text": "dqwdsa",
-      "card": "29778d42-b5e9-442f-9d62-39b8b2483073",
-      "list": "14bd3bcb-6b72-4b4b-bbc4-0cb58e996c27"
-    },
-    {
-      "id": "4ef3aa1c-e8e3-4893-b557-5708906eb96c",
-      "checklist": "d3fab768-6bd2-4878-a14c-4d5719c77342",
-      "isChecked": true,
-      "text": "qwdadsa",
-      "card": "29778d42-b5e9-442f-9d62-39b8b2483073",
-      "list": "14bd3bcb-6b72-4b4b-bbc4-0cb58e996c27"
+      "checklist": "test"
     }
   ],
   "users": [
@@ -235,14 +42,11 @@
       "password": "marko977x",
       "username": "marko977x",
       "boards": [
-        "bb75e5ab-e327-452a-b110-ba4dfb5ec598",
-        "9698df86-892b-4c80-8204-f219bb0eb0ab"
+        "bb75e5ab-e327-452a-b110-ba4dfb5ec598"
       ]
     },
     {
-      "boards": [
-        "9c98ad10-a078-4cc2-b035-7ce1c6cf043a"
-      ],
+      "boards": [],
       "email": "marko@gmail.com",
       "id": "4d951af4-6cc1-43a9-b8ce-3cb9cf4c9985",
       "password": "marko",

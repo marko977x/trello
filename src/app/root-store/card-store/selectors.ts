@@ -2,6 +2,7 @@ import { MemoizedSelector, createFeatureSelector, createSelector } from '@ngrx/s
 import { CardState, CardAdapter } from './state';
 import { Card } from 'src/app/models/card';
 import { Dictionary } from '@ngrx/entity';
+import { isEmpty } from 'src/app/services/object-checker';
 
 export const selectCardState: MemoizedSelector<object, CardState> = 
   createFeatureSelector('card');
@@ -16,7 +17,7 @@ export const selectCardById = (id: string) => {
   return createSelector(
     selectAllCards,
     (cards: Card[]) => {
-      if(cards) return cards.find(card => card.id === id);
+      if(!isEmpty(cards) && cards.length != 0) return cards.find(card => card.id === id);
       else return null;
     }
   )

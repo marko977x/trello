@@ -7,11 +7,8 @@ import { LoadCards } from './root-store/card-store/actions';
 import { LoadChecklists } from './root-store/checklist-store/actions';
 import { LoadChecklistItems } from './root-store/checklist-item-store/actions';
 import { LoadUsers } from './root-store/user-store/actions';
-import { setItemToLocalStorage, getItemFromLocalStorage } from './services/local-storage';
-import { Ui } from './models/ui';
-import { Router, NavigationStart, NavigationEnd } from '@angular/router';
-import { isEmpty } from './services/object-checker';
-import { HOME_URL, DASHBOARD_URL, BOARD_URL } from './routes-constants';
+import { setItemToLocalStorage, UI_STORE_KEY } from './services/local-storage';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -28,7 +25,7 @@ export class AppComponent  {
     this.store$.dispatch(new LoadUsers());
 
     this.store$.subscribe((state: RootState) => {
-      setItemToLocalStorage('ui', state.ui);
+      setItemToLocalStorage(UI_STORE_KEY, state.ui);
     });
   }
 

@@ -8,7 +8,8 @@
       id="{{listId}}"
       class="list-content" 
       [cdkDropListData]="list.cards"
-      (cdkDropListDropped)="drop($event)">
+      (cdkDropListDropped)="drop($event)"
+      [cdkDropListConnectedTo]="connectedListsIds">
     <app-card-details 
       class="card" *ngFor="let card of list.cards"
       cdkDrag [title]="card" [id]="card">

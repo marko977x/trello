@@ -10,7 +10,7 @@ import { OpenBoard } from 'src/app/root-store/ui-store/actions';
 import { MatDialog } from '@angular/material';
 import { SimpleModalComponent } from 'src/app/components/simple-modal/simple-modal.component';
 import { AddBoard } from 'src/app/root-store/board-store/actions';
-import { getItemFromLocalStorage } from 'src/app/services/local-storage';
+import { getItemFromLocalStorage, UI_STORE_KEY } from 'src/app/services/local-storage';
 import * as uuid from "uuid";
 import { Router } from '@angular/router';
 import { BOARD_URL } from 'src/app/routes-constants';
@@ -52,7 +52,7 @@ export class DashboardComponent implements OnInit {
   }
 
   createBoard(boardTitle: string) {
-    let userId: string = getItemFromLocalStorage<Ui>('ui').loggedUser;
+    let userId: string = getItemFromLocalStorage<Ui>(UI_STORE_KEY).loggedUser;
     this.store$.dispatch(new AddBoard(userId,
       {
         id: uuid.v4(),

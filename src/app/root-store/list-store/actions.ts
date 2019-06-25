@@ -51,23 +51,23 @@ export class DeleteListSuccess implements Action {
 export class SwapCards implements Action {
   readonly type = ListActionTypes.SWAP_CARDS;
   constructor(
-    public listId: string,
-    public previousIndex: number,
-    public currentIndex: number) {}
+    public container: {previous: string, current: string},
+    public index: {previous: number, current: number},
+    public cardId: string) {}
 }
 
 export class SwapCardsSuccess implements Action {
   readonly type = ListActionTypes.SWAP_CARDS_SUCCESS;
   constructor(
-    public listId: string,
-    public previousIndex: number,
-    public currentIndex: number) {}
+    public container: {previous: string, current: string},
+    public index: {previous: number, current: number},
+    public cardId: string) {}
 }
 
 export class SwapCardsError implements Action {
   readonly type = ListActionTypes.SWAP_CARDS_ERROR;
   constructor(
-    public listId: string,
-    public previousIndex: number,
-    public currentIndex: number) {}
+    public container: {previous: string, current: string},
+    public index: {previous: number, current: number},
+    public cardId: string) {}
 }

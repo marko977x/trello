@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { RepositoryService, API_CHECKLIST_ITEMS_URL } from './repository.service';
-import { AddChecklist, SwapItems, DeleteChecklist } from 'src/app/root-store/checklist-store/actions';
+import { AddChecklist, SwapItems } from 'src/app/root-store/checklist-store/actions';
 import { Checklist } from 'src/app/models/checklist';
 import { API_CARDS_URL, API_CHECKLISTS_URL } from './repository.service';
 import { Card } from 'src/app/models/card';
 import { moveItemInArray } from '@angular/cdk/drag-drop';
-import { Observable, forkJoin, concat, of } from 'rxjs';
-import { map, switchMap, mergeMap, tap, catchError } from 'rxjs/operators';
+import { Observable, forkJoin, concat, from } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 import { ChecklistItem } from 'src/app/models/checklist-item';
 
 @Injectable({
@@ -55,13 +55,13 @@ export class ChecklistService {
     deepDeleteChecklist(checklistId: string): Observable<any> {
       return concat(
         this.repository.getOne<Checklist>(`${API_CHECKLISTS_URL}/${checklistId}`).pipe(
-          switchMap(checklist => checklist.items),
-          mergeMap(item => {
-            return this.repository.deleteOne<ChecklistItem>(`${API_CHECKLIST_ITEMS_URL}/${item}`)})
+          switchMap(checklist => {
+            return from(checklist.items).pipe(
+              map(item => this.repository.deleteOne<ChecklistItem>(`${API_CHECKLIST_ITEMS_URL}/${item}`).subscribe())
+            )
+          })
         ),
-        this.repository.deleteOne<Checklist>(`${API_CHECKLISTS_URL}/${checklistId}`).pipe(
-          catchError(error => of(console.log(error)))
-        )
+        this.repository.deleteOne<Checklist>(`${API_CHECKLISTS_URL}/${checklistId}`)
       );
     }
 }

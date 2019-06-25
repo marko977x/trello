@@ -7,8 +7,8 @@ import { selectBoardById, selectSelectedBoard } from 'src/app/root-store/board-s
 import { RootState } from 'src/app/root-store/root-state';
 import { IMAGES_PATHS } from 'src/app/models/app';
 import { IconRegistryService } from 'src/app/services/icon-registry.service';
-import { AddBoard } from 'src/app/root-store/board-store/actions';
-import { getItemFromLocalStorage } from 'src/app/services/local-storage';
+import { AddBoard, SwapLists } from 'src/app/root-store/board-store/actions';
+import { getItemFromLocalStorage, UI_STORE_KEY } from 'src/app/services/local-storage';
 import { Ui } from 'src/app/models/ui';
 import * as uuid from "uuid";
 import { AddList } from 'src/app/root-store/list-store/actions';
@@ -38,7 +38,8 @@ export class BoardComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    this.store$.dispatch(new SwapLists(
+      getItemFromLocalStorage<Ui>(UI_STORE_KEY).boardId, event.previousIndex, event.currentIndex));
   }
 
   getBackgroundImage(index: number) {
@@ -54,7 +55,7 @@ export class BoardComponent implements OnInit {
   }
 
   addNewList(listTitle: string) {
-    let boardId: string = getItemFromLocalStorage<Ui>('ui').boardId;
+    let boardId: string = getItemFromLocalStorage<Ui>(UI_STORE_KEY).boardId;
     this.store$.dispatch(new AddList(boardId, {
       id: uuid.v4(),
       board: boardId,

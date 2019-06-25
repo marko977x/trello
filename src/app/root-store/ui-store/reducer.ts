@@ -1,7 +1,7 @@
 import { Ui } from 'src/app/models/ui';
 import { Action } from '@ngrx/store';
 import { UiActionTypes, SetLoggedUser, OpenBoard } from './actions';
-import { getItemFromLocalStorage } from 'src/app/services/local-storage';
+import { getItemFromLocalStorage, UI_STORE_KEY } from 'src/app/services/local-storage';
 import { UserActionTypes, SignUpSuccess } from '../user-store/actions';
 
 export const initialState: Ui = {
@@ -38,7 +38,7 @@ function reducer(state = initialState, action: Action): Ui {
       }
     }
     default: {
-      const ui: Ui = getItemFromLocalStorage('ui');
+      const ui: Ui = getItemFromLocalStorage(UI_STORE_KEY);
       if(ui) return ui;
       else return state;
     };

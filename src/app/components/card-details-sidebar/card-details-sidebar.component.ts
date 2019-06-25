@@ -60,8 +60,7 @@ export class CardDetailsSidebarComponent implements OnInit {
       id: uuid.v4(),
       title: checklistTitle,
       items: [],
-      card: this.card.id,
-      list: this.card.list
+      card: this.card.id
     }));
   }
 }

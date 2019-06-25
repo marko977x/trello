@@ -6,7 +6,7 @@ import { Ui } from 'src/app/models/ui';
 import { isEmpty } from 'src/app/services/object-checker';
 import { Router } from '@angular/router';
 import { NavigateToDashboard, ClearUiStore } from 'src/app/root-store/ui-store/actions';
-import { removeItemFromLocalStorage, setItemToLocalStorage } from 'src/app/services/local-storage';
+import { setItemToLocalStorage, UI_STORE_KEY } from 'src/app/services/local-storage';
 import { DASHBOARD_URL, HOME_URL } from 'src/app/routes-constants';
 import { initialState } from 'src/app/root-store/ui-store/reducer';
 
@@ -48,7 +48,7 @@ export class HeaderComponent implements OnInit {
 
   getHeaderTitle() {
     if(this.ui) {
-      return this.ui.boardId !== "" ? this.dashboardTitle : this.dashboardDefaultTitle;
+      return isEmpty(this.ui.boardId) ? this.dashboardDefaultTitle : this.dashboardTitle;
     }
   }
 
@@ -59,7 +59,7 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.store$.dispatch(new ClearUiStore());
-    setItemToLocalStorage<Ui>('ui', initialState);
+    setItemToLocalStorage<Ui>(UI_STORE_KEY, initialState);
     this.router.navigate(['/' + HOME_URL]);
   }
 

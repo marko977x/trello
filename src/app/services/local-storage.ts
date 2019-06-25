@@ -11,3 +11,5 @@ export function getItemFromLocalStorage<T>(key: string): T {
 export function removeItemFromLocalStorage(key: string) {
   localStorage.removeItem(key);
 }
+
+export const UI_STORE_KEY = 'ui';

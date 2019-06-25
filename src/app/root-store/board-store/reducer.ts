@@ -1,9 +1,10 @@
 import { initialState, BoardState, BoardAdapter } from './state';
 import { Action } from '@ngrx/store';
-import { BoardActionTypes, LoadBoardsSuccess, AddBoard } from './actions';
+import { BoardActionTypes, LoadBoardsSuccess, AddBoard, SwapLists, SwapListsError } from './actions';
 import { ListActionTypes, AddListSuccess, DeleteListSuccess, AddListError, AddList } from '../list-store/actions';
 import { Board } from 'src/app/models/board';
 import { Update } from '@ngrx/entity';
+import { moveItemInArray } from '@angular/cdk/drag-drop';
 
 function reducer(state = initialState, action: Action): BoardState {
   switch(action.type) {
@@ -35,6 +36,32 @@ function reducer(state = initialState, action: Action): BoardState {
         changes: {lists}
       }
       return BoardAdapter.updateOne(update, state);
+    }
+    case BoardActionTypes.SWAP_LISTS: {
+      const {currentIndex, previousIndex, boardId} = (action as SwapLists);
+      const lists: string[] = state.entities[boardId].lists;
+      moveItemInArray(lists, previousIndex, currentIndex);
+      return {...state, entities: {
+        ...state.entities,
+          [boardId]: {
+            ...state.entities[boardId],
+            lists
+          }
+        }
+      }
+    }
+    case BoardActionTypes.SWAP_LISTS_ERROR: {
+      const {currentIndex, previousIndex, boardId} = (action as SwapListsError);
+      const lists: string[] = state.entities[boardId].lists;
+      moveItemInArray(lists, currentIndex, previousIndex);
+      return {...state, entities: {
+        ...state.entities,
+          [boardId]: {
+            ...state.entities[boardId],
+            lists
+          }
+        }
+      }
     }
     default: return state;
   }
