@@ -42,7 +42,6 @@ export class ChecklistItemComponent implements OnInit {
   }
 
   deleteItem() {
-    console.log(this.item);
     this.store$.dispatch(new DeleteChecklistItem(this.item.checklist, this.item.id));
   }
 

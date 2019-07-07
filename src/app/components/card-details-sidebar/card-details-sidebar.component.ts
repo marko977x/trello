@@ -55,7 +55,6 @@ export class CardDetailsSidebarComponent implements OnInit {
   }
 
   createChecklist(checklistTitle: string) {
-    console.log(checklistTitle);
     this.store$.dispatch(new AddChecklist(this.card.id, {
       id: uuid.v4(),
       title: checklistTitle,

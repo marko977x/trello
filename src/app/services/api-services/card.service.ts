@@ -67,7 +67,6 @@ export class CardService {
   }
 
   changeCardTitle(action: ChangeCardTitle): Observable<Card> {
-    console.log("delete card");
     return this.repository.getOne<Card>(`${API_CARDS_URL}/${action.cardId}`).pipe(
       map(card => {
         card.title = action.title;
