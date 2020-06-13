@@ -1,28 +1,36 @@
-# Trello
+# Trello - Task management web app
+This is a simple clone of an existing web application called Trello. Trello is a web-based Kanban-style list-making application.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.3.
+# Table of Contents
+* [Instructions](#instructions)
+* [Usage](#usage)
+* [Support](#support)
+* [Contact](#contact)
 
-## Development server
+<a name="instructions"></a>
+# Instructions
+Steps to run the application:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-Run `npm run serve` for a json server. Navigate to `http://localhost:4200` to view the database.
+* Clone the repo.
+* Navigate to the root folder and open a console.
+* Enter the command "npm run start" without the quotes.
+* Open another one console in the same root folder.
+* Enter the command "npm run json" without the quotes.
+* Open your browser and enter "localhost:4200" in the URL field.
 
-## Code scaffolding
+<a name="usage"></a>
+# Usage
+<img align=right width=480 height=255 src="https://media.giphy.com/media/dy9A1rUSqfyAyIN8h5/giphy.gif"></img>
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+* Create an account by entering an email address, username, and password. 
+* Once you log in, the dashboard page will appear and you're ready to create your first board. 
+* Inside the board, you can create lists of tasks, reorder tasks within a list, move tasks between lists, etc.
+* Each card can contain a description and a checklist. Items inside the checklist can be reordered by drag and drop mechanism. 
 
-## Build
+<a name="support"></a>
+# Support
+Please [open an issue](https://github.com/marko977x/trello/issues) for support or even more [open a pull request](https://github.com/marko977x/trello/pulls).
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+<a name="contact"></a>
+# Contact
+Don't hesitate to ask me whatever you want. Contact me via email : marko977x@gmail.com
