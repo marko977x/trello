@@ -1,30 +1,14 @@
 {
   "boards": [
     {
-      "id": "bb75e5ab-e327-452a-b110-ba4dfb5ec598",
+      "id": "1",
       "title": "Board Title",
-      "lists": [
-        "f31a1a87-08ba-4b7a-930c-8c371b38afec",
-        "4d8fbf37-9f8a-423b-a8fa-cb55c6d67ae9"
-      ],
+      "lists": [],
       "user": "User Id",
       "backgroundIndex": 3
     }
   ],
-  "lists": [
-    {
-      "id": "f31a1a87-08ba-4b7a-930c-8c371b38afec",
-      "board": "bb75e5ab-e327-452a-b110-ba4dfb5ec598",
-      "cards": [],
-      "title": "dsqewsa"
-    },
-    {
-      "id": "4d8fbf37-9f8a-423b-a8fa-cb55c6d67ae9",
-      "board": "bb75e5ab-e327-452a-b110-ba4dfb5ec598",
-      "cards": [],
-      "title": "dsqweasdqwdqas"
-    }
-  ],
+  "lists": [],
   "cards": [],
   "checklists": [],
   "checklistItems": [
@@ -41,16 +25,7 @@
       "email": "marko977x@gmail.com",
       "password": "marko977x",
       "username": "marko977x",
-      "boards": [
-        "bb75e5ab-e327-452a-b110-ba4dfb5ec598"
-      ]
-    },
-    {
-      "boards": [],
-      "email": "marko@gmail.com",
-      "id": "4d951af4-6cc1-43a9-b8ce-3cb9cf4c9985",
-      "password": "marko",
-      "username": "marko"
+      "boards": []
     }
   ]
 }
