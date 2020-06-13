@@ -26,7 +26,7 @@ Steps to run the application:
 * Create an account by entering an email address, username, and password. 
 * Once you log in, the dashboard page will appear and you're ready to create your first board. 
 * Inside the board, you can create lists of tasks, reorder tasks within a list, move tasks between lists, etc.
-* Each card can contain a description and a checklist. Items inside the checklist can be reordered by drag and drop mechanism. 
+* Each card can contain a description and a checklist. Items inside the checklist can be reordered by drag and drop. 
 
 <a name="support"></a>
 # Support
